@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservar Salas de Computo</title>
+    <style>
+        body {
+            background-color: #7b1e1e;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            height: auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            box-sizing: border-box;
+            border: 3px solid #7b1e1e;
+        }
+
+        .card img.logo {
+            display: block;
+            height: 10vw;
+            width: auto;
+            margin: 0 auto 10px auto;
+        }
+
+        .card h2 {
+            margin: 5px 0;
+            font-size: 3vw;
+            color: #080808;
+        }
+
+        .card h3 {
+            margin: 5px 0;
+            font-size: 2vw;
+            color: #080808;
+        }
+
+        .card h4 {
+            margin: 10px 0;
+            font-size: 2.5vw;
+            color: #0a0a0a;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1.5vw;
+        }
+
+        button {
+            background-color: #003366;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.8vw;
+        }
+
+        button:hover {
+            background-color: #002244;
+        }
+
+        .small-text {
+            font-size: 1.2vw;
+            margin-top: 15px;
+            color: #070707;
+        }
+
+        .small-text a {
+            color: #0c0fe9;
+            text-decoration: none;
+        }
+
+        .small-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar" class="logo">
+        <h2>Reservar Salas de Computo</h2>
+        <h3>UNIVERSIDAD DEL MAR</h3>
+
+        <!-- Registro -->
+        <div id="registro">
+            <h4>Registrarse</h4>
+            <form>
+                <input type="text" placeholder="Usuario" required>
+                <input type="password" placeholder="Contraseña" required>
+                <input type="password" placeholder="Confirmar contraseña" required>
+                <button type="submit">REGISTRARSE</button>
+            </form>
+            <p class="small-text">Ya se encuentra registrado. <a href="#" id="ir-login">Inicie sesión</a></p>
+        </div>
+
+        <!-- Inicio de sesión (oculto al principio) -->
+        <div id="login" style="display: none;">
+            <h4>Inicio de sesión</h4>
+            <form>
+                <input type="text" placeholder="Usuario" required>
+                <input type="password" placeholder="Contraseña" required>
+                <button type="submit">INICIAR SESIÓN</button>
+            </form>
+            <p class="small-text">¿No tiene cuenta? <a href="#" id="ir-registro">Regístrese</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const registroDiv = document.getElementById('registro');
+            const loginDiv = document.getElementById('login');
+
+            const irLogin = document.getElementById('ir-login');
+            const irRegistro = document.getElementById('ir-registro');
+
+            irLogin.addEventListener('click', function(e) {
+                e.preventDefault();
+                registroDiv.style.display = 'none';
+                loginDiv.style.display = 'block';
+            });
+
+            irRegistro.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginDiv.style.display = 'none';
+                registroDiv.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
