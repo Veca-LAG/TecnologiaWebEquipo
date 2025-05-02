@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reporte de Reserva</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      border: 2px solid #ccc;
+      background-color: #f4f8fc;
+      border-radius: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0b3d91;
+    }
+
+    .dato {
+      margin: 15px 0;
+      font-size: 20px;
+    }
+
+    .logo {
+      display: block;
+      margin: 20px auto;
+      width: 120px;
+    }
+
+    .footer-bar {
+      background-color: #6a2016;
+      height: 30px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar">
+    <h1>Reporte de Reserva</h1>
+    <div class="dato" id="info"></div>
+  </div>
+
+  <div class="footer-bar"></div>
+
+  <script>
+    const reserva = JSON.parse(localStorage.getItem('reserva'));
+
+    if (reserva) {
+      document.getElementById('info').innerHTML = `
+        <p><strong>Nombre:</strong> ${reserva.nombre}</p>
+        <p><strong>Matrícula:</strong> ${reserva.matricula}</p>
+        <p><strong>Carrera:</strong> ${reserva.carrera}</p>
+        <p><strong>Semestre:</strong> ${reserva.semestre}</p>
+        <p><strong>Sala:</strong> ${reserva.sala}</p>
+        <p><strong>Hora de entrada:</strong> ${reserva.entrada}</p>
+        <p><strong>Hora de salida:</strong> ${reserva.salida}</p>
+        <p><strong>Equipo solicitado:</strong> ${reserva.equipos.join(', ')}</p>
+      `;
+    } else {
+      document.getElementById('info').innerText = 'No hay datos disponibles.';
+    }
+  </script>
+</body>
+</html>
