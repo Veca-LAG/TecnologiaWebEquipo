@@ -100,7 +100,38 @@
                 <input type="password" placeholder="Contraseña" required>
                 <button type="submit">INICIAR SESIÓN</button>
             </form>
+            <p id="error-message" style="color: red; display: none;">Usuario o contraseña incorrectos</p>
         </div>
     </div>
+
+    <!--Estructura de datos-->
+    <script src="Encargados.js"></script>
+    <script>
+        const form = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('error-message');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const usuario = document.getElementById('usuario').value;
+            const contraseña = document.getElementById('contraseña').value;
+
+            let usuarioEncontrado = false;
+            for (let encargado of encargados) {
+                if (encargado.usuario === usuario && encargado.contraseña === contraseña) {
+                    usuarioEncontrado = true;
+                    window.location.href = "Bienvenido.html";
+                    break;
+                }
+            }
+
+            if (!usuarioEncontrado) {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        });
+    </script>
+
 </body>
 </html>
