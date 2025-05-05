@@ -79,14 +79,15 @@
     <button onclick="validarMatricula()">INICIAR SESIÓN</button>
   </div>
 
+  <script src="Alumnos.js"></script>
   <script>
     function validarMatricula() {
-      const matricula = document.getElementById("matricula").value.trim();
-      const matriculasValidas = ["A123", "B456", "C789"];
+      const input = document.getElementById("matricula").value.trim();
+      const alumno = alumnos.find(a => a.matricula === input);
 
-      if (matriculasValidas.includes(matricula)) {
-        localStorage.setItem("matricula", matricula);
-        window.location.href = "reserva.html";
+      if (alumno) {
+        localStorage.setItem("alumno", JSON.stringify(alumno));
+        window.location.href = "reporte.html";
       } else {
         alert("Matrícula inválida.");
       }

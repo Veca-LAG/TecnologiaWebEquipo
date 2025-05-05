@@ -92,20 +92,21 @@
         <h2>Reservar Salas de Computo</h2>
         <h3>UNIVERSIDAD DEL MAR</h3>
 
-        <!-- Solo Inicio de sesión -->
         <div id="login">
             <h4>Inicio de sesión</h4>
-            <form>
-                <input type="text" placeholder="Usuario" required>
-                <input type="password" placeholder="Contraseña" required>
+            <form id="loginForm">
+                <input type="text" id="usuario" placeholder="Usuario" required>
+                <input type="password" id="contraseña" placeholder="Contraseña" required>
                 <button type="submit">INICIAR SESIÓN</button>
             </form>
             <p id="error-message" style="color: red; display: none;">Usuario o contraseña incorrectos</p>
         </div>
     </div>
 
-    <!--Estructura de datos-->
+    <!-- Carga el arreglo de encargados -->
     <script src="Encargados.js"></script>
+    
+    <!-- Validación del formulario -->
     <script>
         const form = document.getElementById('loginForm');
         const errorMessage = document.getElementById('error-message');
@@ -116,22 +117,17 @@
             const usuario = document.getElementById('usuario').value;
             const contraseña = document.getElementById('contraseña').value;
 
-            let usuarioEncontrado = false;
-            for (let encargado of encargados) {
-                if (encargado.usuario === usuario && encargado.contraseña === contraseña) {
-                    usuarioEncontrado = true;
-                    window.location.href = "Bienvenido.html";
-                    break;
-                }
-            }
+            let usuarioEncontrado = encargados.some(encargado =>
+                encargado.usuario === usuario && encargado.contraseña === contraseña
+            );
 
-            if (!usuarioEncontrado) {
-                errorMessage.style.display = 'block';
-            } else {
+            if (usuarioEncontrado) {
                 errorMessage.style.display = 'none';
+                window.location.href = "Bienvenido.html";
+            } else {
+                errorMessage.style.display = 'block';
             }
         });
     </script>
-
 </body>
 </html>
