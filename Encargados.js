@@ -11,5 +11,4 @@ const encargados = [
         nombre: "Maria Jarquin Velazques",
         Puesto: "Policia"
     }
-    // Más encargados pueden ser agregados aquí
 ];
