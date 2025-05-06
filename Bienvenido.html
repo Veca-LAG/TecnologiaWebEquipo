@@ -105,7 +105,7 @@
     <a href="#">Salir</a>
   </div>
 
-  <div class="welcome">Bienvenido usuario</div>
+  <div class="welcome" id="nombre-usuario">Bienvenido</div>
   <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar">
 
   <div class="footer-bar"></div>
@@ -123,6 +123,16 @@
         menu.style.display = 'none';
       }
     });
+
+    // Mostrar nombre del usuario
+    const nombre = localStorage.getItem('nombreUsuario');
+    const nombreUsuarioDiv = document.getElementById('nombre-usuario');
+
+    if (nombre) {
+      nombreUsuarioDiv.textContent = `Bienvenido ${nombre}`;
+    } else {
+      nombreUsuarioDiv.textContent = 'Bienvenido usuario';
+    }
   </script>
 </body>
 </html>
