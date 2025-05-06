@@ -102,10 +102,10 @@
     <a href="formulario.html">Crear registro</a>
     <a href="#">Reporte</a>
     <a href="#">Verificar asistencia</a>
-    <a href="#">Salir</a>
+    <a href="#" id="salir">Salir</a> <!-- Botón Salir con ID -->
   </div>
 
-  <div class="welcome">Bienvenido usuario</div>
+  <div class="welcome" id="nombre-usuario">Bienvenido</div>
   <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar">
 
   <div class="footer-bar"></div>
@@ -123,7 +123,23 @@
         menu.style.display = 'none';
       }
     });
-  </script>
 
+    // Mostrar el nombre del usuario desde localStorage
+    const nombre = localStorage.getItem('nombreUsuario');
+    const nombreUsuarioDiv = document.getElementById('nombre-usuario');
+
+    if (nombre) {
+      nombreUsuarioDiv.textContent = `Bienvenido ${nombre}`;
+    } else {
+      nombreUsuarioDiv.textContent = 'Bienvenido usuario';
+    }
+
+    // Funcionalidad del botón "Salir"
+    document.getElementById('salir').addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.removeItem('nombreUsuario'); // Borra nombre guardado
+      window.location.href = 'index.html'; // Redirige al login
+    });
+  </script>
 </body>
 </html>

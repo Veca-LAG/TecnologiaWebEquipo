@@ -9,10 +9,20 @@ const alumnos = [
     {
       matricula: "2020100100",
       nombre: "Pepito Rodríguez Cruz",
+<<<<<<< HEAD
       carrera: "Ingeniería forestal",
+=======
+      carrera: "Ingeniería Forestal",
+>>>>>>> 4fbda4c2fab55cfb09ad818a10ebc1fa92bc6284
       semestre: 10
-    }
-    // Puedes agregar más alumnos aquí
+    },
+
+    {
+        matricula: "2022120115",
+        nombre: "Alejandra Jiménez Venegas",
+        carrera: "Licenciatura en Informática",
+        semestre: 6
+      }
 ];
 
 // Función para buscar alumno por matrícula

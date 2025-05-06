@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservar Salas de Cómputo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+    .container {
+      width: 600px;
+      margin: 40px auto;
+      background-color: white;
+      border: 2px solid #1c4e80;
+      padding: 20px 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .header {
+      text-align: center;
+    }
+    .header img {
+      height: 100px;
+    }
+    h1 {
+      margin: 10px 0;
+    }
+    .subtitulo {
+      font-size: 1.2em;
+      color: #888;
+      margin-bottom: 20px;
+    }
+    .datos {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    .datos span {
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+    }
+    .checkboxes {
+      margin: 20px 0;
+    }
+    .checkboxes label {
+      margin-right: 20px;
+    }
+    .footer {
+      background-color: #5291b8;
+      text-align: right;
+      padding: 10px;
+    }
+    .footer button {
+      background-color: #1c4e80;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo UMar">
+      <h1>Reservar Salas de Cómputo</h1>
+      <h3>UNIVERSIDAD DEL MAR</h3>
+      <div class="subtitulo">Solicitud recibida</div>
+    </div>
+
+    <div class="datos">
+      <span><strong>Nombre del solicitante:</strong> nombre</span><br>
+      <span><strong>Matrícula:</strong> matricula</span><br>
+      <div class="row">
+        <span><strong>Carrera:</strong> carrera</span>
+        <span><strong>Semestre:</strong> 000</span>
+      </div>
+      <div class="row">
+        <span><strong>Fecha:</strong> 00/00/0000</span>
+        <span><strong>Grupo:</strong> 000</span>
+      </div>
+      <div class="row">
+        <span><strong>Hora de entrada:</strong> 00:00</span>
+        <span><strong>Hora de salida:</strong> 00:00</span>
+      </div>
+    </div>
+
+    <div class="checkboxes">
+      <label><input type="checkbox" disabled> PC de la sala</label>
+      <label><input type="checkbox" disabled> Laptop</label>
+      <label><input type="checkbox" disabled> Proyector</label>
+    </div>
+
+    <div class="footer">
+      <button>REGISTRAR</button>
+    </div>
+  </div>
+
+</body>
+</html>
