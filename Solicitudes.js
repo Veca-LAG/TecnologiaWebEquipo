@@ -109,18 +109,20 @@ function actualizarMensajeVacio() {
   const mensaje = document.getElementById("mensaje-vacio");
 
   if (solicitudesVisibles.length === 0) {
-    mensaje.style.display = "block";
+    mensaje.style.display = "block";  // Mostrar mensaje si no hay solicitudes
   } else {
-    mensaje.style.display = "none";
+    mensaje.style.display = "none";  // Ocultar mensaje si hay solicitudes
   }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   const contenedor = document.getElementById("solicitudes-container");
 
+  // Si hay solicitudes, mostrarlas
   solicitudes.forEach((s, i) => {
     contenedor.innerHTML += crearSolicitudHTML(s, i);
   });
 
+  // Actualizar el mensaje si no hay solicitudes
   actualizarMensajeVacio();
 });
