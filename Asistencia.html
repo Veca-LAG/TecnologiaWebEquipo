@@ -77,26 +77,26 @@
     </div>
 
     <div class="datos">
-      <span><strong>Nombre del solicitante:</strong> nombre</span><br>
-      <span><strong>Matrícula:</strong> matricula</span><br>
+      <span><strong>Nombre del solicitante:</strong> <span id="nombre"></span></span><br>
+      <span><strong>Matrícula:</strong> <span id="matricula"></span></span><br>
       <div class="row">
-        <span><strong>Carrera:</strong> carrera</span>
-        <span><strong>Semestre:</strong> 000</span>
+        <span><strong>Carrera:</strong> <span id="carrera"></span></span>
+        <span><strong>Semestre:</strong> <span id="semestre"></span></span>
       </div>
       <div class="row">
-        <span><strong>Fecha:</strong> 00/00/0000</span>
-        <span><strong>Grupo:</strong> 000</span>
+        <span><strong>Fecha:</strong> <span id="fecha"></span></span>
+        <span><strong>Grupo:</strong> <span id="grupo"></span></span>
       </div>
       <div class="row">
-        <span><strong>Hora de entrada:</strong> 00:00</span>
-        <span><strong>Hora de salida:</strong> 00:00</span>
+        <span><strong>Hora de entrada:</strong> <span id="horaEntrada"></span></span>
+        <span><strong>Hora de salida:</strong> <span id="horaSalida"></span></span>
       </div>
     </div>
 
     <div class="checkboxes">
-      <label><input type="checkbox" disabled> PC de la sala</label>
-      <label><input type="checkbox" disabled> Laptop</label>
-      <label><input type="checkbox" disabled> Proyector</label>
+      <label><input type="checkbox" id="pcSala" disabled> PC de la sala</label>
+      <label><input type="checkbox" id="laptop" disabled> Laptop</label>
+      <label><input type="checkbox" id="proyector" disabled> Proyector</label>
     </div>
 
     <div class="footer">
@@ -104,5 +104,7 @@
     </div>
   </div>
 
+  <!-- JS externo -->
+  <script src="Solicitudes.js"></script>
 </body>
 </html>
