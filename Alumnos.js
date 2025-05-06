@@ -9,9 +9,16 @@ const alumnos = [
     {
       matricula: "2020100100",
       nombre: "Pepito Rodríguez Cruz",
-      carrera: "Licenciatura en forestal",
+      carrera: "Ingeniería Forestal",
       semestre: 10
     }
+
+    {
+        matricula: "2022120115",
+        nombre: "Alejandra Jiménez Venegas",
+        carrera: "Licenciatura en Informática",
+        semestre: 6
+      }
 ];
 
 // Función para buscar alumno por matrícula
