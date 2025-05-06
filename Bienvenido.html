@@ -102,7 +102,7 @@
     <a href="formulario.html">Crear registro</a>
     <a href="#">Reporte</a>
     <a href="#">Verificar asistencia</a>
-    <a href="#">Salir</a>
+    <a href="#" id="salir">Salir</a> <!-- Botón Salir con ID -->
   </div>
 
   <div class="welcome" id="nombre-usuario">Bienvenido</div>
@@ -124,7 +124,7 @@
       }
     });
 
-    // Mostrar nombre del usuario
+    // Mostrar el nombre del usuario desde localStorage
     const nombre = localStorage.getItem('nombreUsuario');
     const nombreUsuarioDiv = document.getElementById('nombre-usuario');
 
@@ -133,6 +133,13 @@
     } else {
       nombreUsuarioDiv.textContent = 'Bienvenido usuario';
     }
+
+    // Funcionalidad del botón "Salir"
+    document.getElementById('salir').addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.removeItem('nombreUsuario'); // Borra nombre guardado
+      window.location.href = 'index.html'; // Redirige al login
+    });
   </script>
 </body>
 </html>
