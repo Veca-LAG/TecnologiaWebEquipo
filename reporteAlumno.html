@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reporte de Reserva</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      border: 2px solid #ccc;
+      background-color: #f4f8fc;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #0b3d91;
+    }
+
+    .dato {
+      margin: 15px 0;
+      font-size: 20px;
+      text-align: left;
+    }
+
+    .logo {
+      display: block;
+      margin: 20px auto;
+      width: 120px;
+    }
+
+    .footer-bar {
+      background-color: #6a2016;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .btn-aceptar {
+      padding: 8px 20px;
+      font-size: 16px;
+      background-color: #0b3d91;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-aceptar:hover {
+      background-color: #0a357f;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar">
+    <h1>Reporte de Reserva</h1>
+    <div class="dato" id="info"></div>
+  </div>
+
+  <div class="footer-bar">
+    <button id="btnAceptar" class="btn-aceptar">Aceptar</button>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      const reserva = JSON.parse(localStorage.getItem('reservaActual'));
+
+      if (reserva) {
+        $("#info").html(`
+          <p><strong>Nombre:</strong> ${reserva.nombre}</p>
+          <p><strong>Matrícula:</strong> ${reserva.matricula}</p>
+          <p><strong>Carrera:</strong> ${reserva.carrera}</p>
+          <p><strong>Semestre:</strong> ${reserva.semestre}</p>
+          <p><strong>Sala:</strong> ${reserva.sala}</p>
+          <p><strong>Hora de entrada:</strong> ${reserva.entrada}</p>
+          <p><strong>Hora de salida:</strong> ${reserva.salida}</p>
+          <p><strong>Equipo solicitado:</strong> ${reserva.equipos.join(', ')}</p>
+        `);
+      } else {
+        $("#info").text('No hay datos disponibles.');
+      }
+
+      $("#btnAceptar").click(function() {
+        window.location.href = "indexAlumno.html";
+      });
+    });
+  </script>
+</body>
+</html>

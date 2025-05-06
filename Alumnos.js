@@ -27,29 +27,3 @@ const alumnos = [
         semestre: 4
       }
 ];
-
-// Función para buscar alumno por matrícula
-function buscarAlumnoPorMatricula(matricula) {
-    return alumnos.find(alumno => alumno.matricula === matricula);
-}
-
-// Configurar autocompletado cuando el documento esté listo
-$(document).ready(function() {
-    // Autocompletar datos al ingresar matrícula
-    $("#matricula").on('input', function() {
-        const matricula = $(this).val().trim();
-        const alumno = buscarAlumnoPorMatricula(matricula);
-        
-        if (alumno) {
-            $("#datos-alumno").html(`
-                <p><strong>Nombre:</strong> ${alumno.nombre}</p>
-                <p><strong>Carrera:</strong> ${alumno.carrera}</p>
-                <p><strong>Semestre:</strong> ${alumno.semestre}</p>
-            `);
-        } else {
-            $("#datos-alumno").html(matricula ? 
-                "Matrícula no encontrada" : 
-                "Ingrese su matrícula para autocompletar");
-        }
-    });
-});
