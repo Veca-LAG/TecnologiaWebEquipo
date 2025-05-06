@@ -47,6 +47,7 @@
       position: fixed;
       bottom: 0;
       width: 100%;
+      gap: 20px;
     }
 
     .btn-aceptar {
@@ -62,6 +63,43 @@
     .btn-aceptar:hover {
       background-color: #0a357f;
     }
+
+    .btn-salir {
+      padding: 8px 20px;
+      font-size: 16px;
+      background-color: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-salir:hover {
+      background-color: #c0392b;
+    }
+
+    /* Estilos para el mensaje flotante */
+    .floating-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+      animation: fadeInOut 3s ease-in-out;
+      opacity: 0;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; top: 0; }
+      10% { opacity: 1; top: 20px; }
+      90% { opacity: 1; top: 20px; }
+      100% { opacity: 0; top: 0; }
+    }
   </style>
 </head>
 <body>
@@ -73,6 +111,7 @@
 
   <div class="footer-bar">
     <button id="btnAceptar" class="btn-aceptar">Aceptar</button>
+    <button id="btnSalir" class="btn-salir">Salir</button>
   </div>
 
   <!-- jQuery -->
@@ -98,8 +137,25 @@
       }
 
       $("#btnAceptar").click(function() {
+        // Mostrar mensaje flotante en lugar de alert
+        showFloatingMessage("Solicitud aceptada");
+      });
+
+      $("#btnSalir").click(function() {
+        // Redirección directa sin confirmación
         window.location.href = "indexAlumno.html";
       });
+
+      // Función para mostrar mensaje flotante
+      function showFloatingMessage(message) {
+        const $message = $('<div class="floating-message">').text(message);
+        $('body').append($message);
+        
+        // Eliminar el mensaje después de la animación
+        setTimeout(() => {
+          $message.remove();
+        }, 3000);
+      }
     });
   </script>
 </body>
