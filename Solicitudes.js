@@ -4,7 +4,7 @@ const solicitudReserva = {
   matricula: "2021001234",
   carrera: "Ingeniería en Computación",
   semestre: 6,
-  grupo: 612,
+  grupo: "B",
   fecha: "15/05/2025",
   horaEntrada: "09:00 p.m.",
   horaSalida: "11:00 p.m.",
@@ -16,6 +16,7 @@ const solicitudReserva = {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
+  // Rellenar datos
   document.getElementById("nombre").textContent = solicitudReserva.nombreSolicitante;
   document.getElementById("matricula").textContent = solicitudReserva.matricula;
   document.getElementById("carrera").textContent = solicitudReserva.carrera;
@@ -28,4 +29,10 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById("pcSala").checked = solicitudReserva.equipoSolicitado.pcSala;
   document.getElementById("laptop").checked = solicitudReserva.equipoSolicitado.laptop;
   document.getElementById("proyector").checked = solicitudReserva.equipoSolicitado.proyector;
+
+  // Agregar evento al botón REGISTRAR
+  const boton = document.querySelector('.footer button');
+  boton.addEventListener('click', () => {
+    alert("Registro exitoso. Solicite al alumno la confirmación");
+  });
 });
