@@ -87,8 +87,16 @@ function crearSolicitudHTML(s, index) {
   `;
 }
 
+function showFloatingMessage(message) {
+  const $message = $('<div class="floating-message">').text(message);
+  $('body').append($message);
+  
+  // Mostrar el mensaje flotante con animación
+  $message.fadeIn().delay(3000).fadeOut();
+}
+
 function registrarSolicitud(id) {
-  alert("Registro exitoso. Solicite al alumno la confirmación");
+  showFloatingMessage("Registro exitoso. Solicite al alumno la confirmación");
   const elemento = document.getElementById(id);
   if (elemento) {
     elemento.remove();
