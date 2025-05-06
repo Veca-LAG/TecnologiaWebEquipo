@@ -83,13 +83,22 @@
   <script>
     function validarMatricula() {
       const input = document.getElementById("matricula").value.trim();
-      const alumno = alumnos.find(a => a.matricula === input);
 
-      if (alumno) {
-        localStorage.setItem("alumno", JSON.stringify(alumno));
-        window.location.href = "reporteAlumno.html";
+      // Verificamos si el array alumnos está definido y tiene registros
+      if (Array.isArray(alumnos) && alumnos.length > 0) {
+        const alumno = alumnos.find(a => a.matricula === input); // Buscar el alumno por matrícula
+
+        if (alumno) {
+          // Si el alumno existe, guardamos sus datos en localStorage y redirigimos
+          localStorage.setItem("alumno", JSON.stringify(alumno));
+          window.location.href = "reporteAlumno.html";
+        } else {
+          // Si la matrícula no existe, mostramos un mensaje de error
+          alert("Matrícula no encontrada.");
+        }
       } else {
-        alert("Matrícula inválida.");
+        // Si no hay registros de alumnos, mostramos un mensaje de error
+        alert("No existen registros de alumnos.");
       }
     }
   </script>
