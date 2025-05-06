@@ -12,7 +12,6 @@ const alumnos = [
       carrera: "Licenciatura en forestales",
       semestre: 10
     }
-    // Puedes agregar más alumnos aquí
 ];
 
 // Función para buscar alumno por matrícula
