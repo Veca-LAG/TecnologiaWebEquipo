@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Reservar Salas de Cómputo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
       margin: 0;
       padding: 0;
-      background-color: #f2f2f2;
     }
     .container {
       width: 600px;
@@ -56,20 +57,23 @@
       text-align: right;
       padding: 10px;
     }
-    .footer button {
-      background-color: #1c4e80;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      font-size: 1em;
-      cursor: pointer;
+    #mensaje-vacio {
+      text-align: center;
+      font-size: 1.2em;
+      color: #666;
+      margin-top: 40px;
+      display: none;
     }
   </style>
 </head>
 <body>
 
   <div id="solicitudes-container"></div>
+  <div id="mensaje-vacio">El buzón de solicitudes está vacío.</div>
+
+  <div class="footer">
+    <button class="btn btn-primary" onclick="window.location.href='bienvenido.html'">Volver</button>
+  </div>
 
   <script src="Solicitudes.js"></script>
 </body>
