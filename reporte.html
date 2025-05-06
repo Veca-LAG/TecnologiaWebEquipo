@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        header img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar">
+    <h2>Reporte</h2>
+</header>
+
+<table>
+    <thead>
+        <tr>
+            <th>Matrícula</th>
+            <th>Nombre</th>
+            <th>Carrera</th>
+            <th>Semestre</th>
+            <th>Sala</th>
+            <th>Fecha de entrada</th>
+            <th>Hora de entrada</th>
+            <th>Fecha de salida</th>
+            <th>Hora de salida</th>
+            <th>Equipo solicitado</th>
+            <th>Persona encargada</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Aquí los datos se llenarán con JavaScript -->
+        <tr>
+            <td id="matricula"></td>
+            <td id="nombre"></td>
+            <td id="carrera"></td>
+            <td id="semestre"></td>
+            <td id="sala"></td>
+            <td id="fechaEntrada"></td>
+            <td id="horaEntrada"></td>
+            <td id="fechaSalida"></td>
+            <td id="horaSalida"></td>
+            <td id="equipoSolicitado"></td>
+            <td id="encargado"></td>
+        </tr>
+    </tbody>
+</table>
+
+<footer>
+    © Pie de página
+</footer>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Cargar los datos del último registro en localStorage
+        const reserva = JSON.parse(localStorage.getItem('reservaActual'));
+
+        if (reserva) {
+            // Mostrar los datos en la página
+            $("#matricula").text(reserva.matricula);
+            $("#nombre").text(reserva.nombre);
+            $("#carrera").text(reserva.carrera);
+            $("#semestre").text(reserva.semestre);
+            $("#sala").text(reserva.sala);
+            $("#fechaEntrada").text(reserva.fechaEntrada);
+            $("#horaEntrada").text(reserva.horaEntrada);
+            $("#fechaSalida").text(reserva.fechaSalida);
+            $("#horaSalida").text(reserva.horaSalida);
+            $("#equipoSolicitado").text(reserva.equipoSolicitado.join(', ')); // Asumir que es un array de equipos
+            $("#encargado").text(reserva.encargado);
+
+            // Eliminar el registro después de mostrarlo
+            localStorage.removeItem('reservaActual');
+        } else {
+            // Si no hay datos disponibles
+            $("#info").text('No hay datos disponibles.');
+        }
+
+        // Acción al dar click en aceptar
+        $("#btnAceptar").click(function() {
+            window.location.href = "Bienvenido.html";
+        });
+    });
+</script>
+
+</body>
+</html>
