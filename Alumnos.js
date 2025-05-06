@@ -9,7 +9,7 @@ const alumnos = [
     {
       matricula: "2020100100",
       nombre: "Pepito Rodríguez Cruz",
-      carrera: "Licenciatura en forestales",
+      carrera: "Licenciatura en forestal",
       semestre: 10
     }
 ];
