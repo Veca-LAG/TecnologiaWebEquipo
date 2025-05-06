@@ -1,5 +1,19 @@
 index.html
 inicio de sesion de parte del encargado
+-->
+Bienvenido.html
+    menu 
+        crear registro
+            formulario.html
+
+            reporte
+                reporteFin.html
+
+            veridficar asistencia
+                asistencia
+
+            Salir
+                index.html
 
 indexAlumno.html
 inicio de sesión de parte del indexAlumno
