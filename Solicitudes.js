@@ -93,11 +93,26 @@ function registrarSolicitud(id) {
   if (elemento) {
     elemento.remove();
   }
+  actualizarMensajeVacio();
+}
+
+function actualizarMensajeVacio() {
+  const solicitudesVisibles = document.querySelectorAll(".container");
+  const mensaje = document.getElementById("mensaje-vacio");
+
+  if (solicitudesVisibles.length === 0) {
+    mensaje.style.display = "block";
+  } else {
+    mensaje.style.display = "none";
+  }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   const contenedor = document.getElementById("solicitudes-container");
+
   solicitudes.forEach((s, i) => {
     contenedor.innerHTML += crearSolicitudHTML(s, i);
   });
+
+  actualizarMensajeVacio();
 });
