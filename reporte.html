@@ -1,132 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Registrar Reserva</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            margin: 20px;
-        }
+  <meta charset="UTF-8">
+  <title>Reporte de Reserva</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 30px;
-            border: 2px solid #ccc;
-            background-color: #f4f8fc;
-            border-radius: 10px;
-        }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      border: 2px solid #ccc;
+      background-color: #f4f8fc;
+      border-radius: 10px;
+    }
 
-        h1 {
-            text-align: center;
-            color: #0b3d91;
-        }
+    h1 {
+      text-align: center;
+      color: #0b3d91;
+    }
 
-        .dato {
-            margin: 15px 0;
-            font-size: 20px;
-        }
+    .dato {
+      margin: 15px 0;
+      font-size: 20px;
+    }
 
-        .logo {
-            display: block;
-            margin: 20px auto;
-            width: 120px;
-        }
+    .logo {
+      display: block;
+      margin: 20px auto;
+      width: 120px;
+    }
 
-        button {
-            background-color: #0b3d91;
-            color: white;
-            border: none;
-            padding: 14px 24px;
-            font-size: 18px;
-            border-radius: 25px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #09458b;
-        }
-
-        .footer-bar {
-            background-color: #6a2016;
-            height: 30px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    .footer-bar {
+      background-color: #6a2016;
+      height: 30px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar">
+    <h1>Reporte de Reserva</h1>
+    <div class="dato" id="info"></div>
+  </div>
 
-    <!-- Formulario de Registro -->
-    <div class="container">
-        <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar">
-        <h1>Registrar Reserva</h1>
-        
-        <div id="formulario">
-            <input type="text" id="nombre" placeholder="Ingrese su nombre">
-            <input type="text" id="matricula" placeholder="Ingrese su matrícula">
-            <input type="text" id="carrera" placeholder="Ingrese su carrera">
-            <input type="text" id="semestre" placeholder="Ingrese su semestre">
-            <input type="text" id="sala" placeholder="Ingrese la sala">
-            <input type="text" id="entrada" placeholder="Hora de entrada (HH:MM)">
-            <input type="text" id="salida" placeholder="Hora de salida (HH:MM)">
-            <input type="text" id="equipos" placeholder="Equipos solicitados (separados por coma)">
-            <button onclick="registrarReserva()">Registrar</button>
-        </div>
-    </div>
+  <div class="footer-bar"></div>
 
-    <!-- Reporte de la Reserva -->
-    <div class="container" id="reporte" style="display: none;">
-        <h1>Reporte de Reserva</h1>
-        <div class="dato" id="info"></div>
-    </div>
+  <script>
+    const reserva = JSON.parse(localStorage.getItem('reservaActual'));
 
-    <div class="footer-bar"></div>
-
-    <script>
-        function registrarReserva() {
-            // Obtener los valores de los campos de entrada
-            const nombre = document.getElementById("nombre").value.trim();
-            const matricula = document.getElementById("matricula").value.trim();
-            const carrera = document.getElementById("carrera").value.trim();
-            const semestre = document.getElementById("semestre").value.trim();
-            const sala = document.getElementById("sala").value.trim();
-            const entrada = document.getElementById("entrada").value.trim();
-            const salida = document.getElementById("salida").value.trim();
-            const equipos = document.getElementById("equipos").value.trim().split(',');
-
-            // Crear un objeto de reserva
-            const reserva = {
-                nombre,
-                matricula,
-                carrera,
-                semestre,
-                sala,
-                entrada,
-                salida,
-                equipos
-            };
-
-            // Mostrar el reporte de la reserva
-            document.getElementById("info").innerHTML = `
-                <p><strong>Nombre:</strong> ${reserva.nombre}</p>
-                <p><strong>Matrícula:</strong> ${reserva.matricula}</p>
-                <p><strong>Carrera:</strong> ${reserva.carrera}</p>
-                <p><strong>Semestre:</strong> ${reserva.semestre}</p>
-                <p><strong>Sala:</strong> ${reserva.sala}</p>
-                <p><strong>Hora de entrada:</strong> ${reserva.entrada}</p>
-                <p><strong>Hora de salida:</strong> ${reserva.salida}</p>
-                <p><strong>Equipo solicitado:</strong> ${reserva.equipos.join(', ')}</p>
-            `;
-
-            // Ocultar el formulario y mostrar el reporte
-            document.getElementById("formulario").style.display = 'none';
-            document.getElementById("reporte").style.display = 'block';
-        }
-    </script>
-
+    if (reserva) {
+      document.getElementById('info').innerHTML = `
+        <p><strong>Nombre:</strong> ${reserva.nombre}</p>
+        <p><strong>Matrícula:</strong> ${reserva.matricula}</p>
+        <p><strong>Carrera:</strong> ${reserva.carrera}</p>
+        <p><strong>Semestre:</strong> ${reserva.semestre}</p>
+        <p><strong>Sala:</strong> ${reserva.sala}</p>
+        <p><strong>Hora de entrada:</strong> ${reserva.entrada}</p>
+        <p><strong>Hora de salida:</strong> ${reserva.salida}</p>
+        <p><strong>Equipo solicitado:</strong> ${reserva.equipos.join(', ')}</p>
+      `;
+    } else {
+      document.getElementById('info').innerText = 'No hay datos disponibles.';
+    }
+  </script>
 </body>
 </html>
