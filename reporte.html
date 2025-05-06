@@ -19,16 +19,17 @@
       border: 2px solid #ccc;
       background-color: #f4f8fc;
       border-radius: 10px;
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
       color: #0b3d91;
     }
 
     .dato {
       margin: 15px 0;
       font-size: 20px;
+      text-align: left;
     }
 
     .logo {
@@ -39,10 +40,27 @@
 
     .footer-bar {
       background-color: #6a2016;
-      height: 30px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: fixed;
       bottom: 0;
       width: 100%;
+    }
+
+    .btn-aceptar {
+      padding: 8px 20px;
+      font-size: 16px;
+      background-color: #0b3d91;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-aceptar:hover {
+      background-color: #0a357f;
     }
   </style>
 </head>
@@ -53,25 +71,36 @@
     <div class="dato" id="info"></div>
   </div>
 
-  <div class="footer-bar"></div>
+  <div class="footer-bar">
+    <button id="btnAceptar" class="btn-aceptar">Aceptar</button>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script>
-    const reserva = JSON.parse(localStorage.getItem('reservaActual'));
+    $(document).ready(function() {
+      const reserva = JSON.parse(localStorage.getItem('reservaActual'));
 
-    if (reserva) {
-      document.getElementById('info').innerHTML = `
-        <p><strong>Nombre:</strong> ${reserva.nombre}</p>
-        <p><strong>Matrícula:</strong> ${reserva.matricula}</p>
-        <p><strong>Carrera:</strong> ${reserva.carrera}</p>
-        <p><strong>Semestre:</strong> ${reserva.semestre}</p>
-        <p><strong>Sala:</strong> ${reserva.sala}</p>
-        <p><strong>Hora de entrada:</strong> ${reserva.entrada}</p>
-        <p><strong>Hora de salida:</strong> ${reserva.salida}</p>
-        <p><strong>Equipo solicitado:</strong> ${reserva.equipos.join(', ')}</p>
-      `;
-    } else {
-      document.getElementById('info').innerText = 'No hay datos disponibles.';
-    }
+      if (reserva) {
+        $("#info").html(`
+          <p><strong>Nombre:</strong> ${reserva.nombre}</p>
+          <p><strong>Matrícula:</strong> ${reserva.matricula}</p>
+          <p><strong>Carrera:</strong> ${reserva.carrera}</p>
+          <p><strong>Semestre:</strong> ${reserva.semestre}</p>
+          <p><strong>Sala:</strong> ${reserva.sala}</p>
+          <p><strong>Hora de entrada:</strong> ${reserva.entrada}</p>
+          <p><strong>Hora de salida:</strong> ${reserva.salida}</p>
+          <p><strong>Equipo solicitado:</strong> ${reserva.equipos.join(', ')}</p>
+        `);
+      } else {
+        $("#info").text('No hay datos disponibles.');
+      }
+
+      $("#btnAceptar").click(function() {
+        window.location.href = "Bienvenido.html";
+      });
+    });
   </script>
 </body>
 </html>
