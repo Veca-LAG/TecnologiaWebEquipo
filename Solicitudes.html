@@ -7,9 +7,9 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
       margin: 0;
       padding: 0;
+      background-color: #f2f2f2;
     }
     .container {
       width: 600px;
@@ -57,11 +57,24 @@
       text-align: right;
       padding: 10px;
     }
-    #mensaje-vacio {
-      text-align: center;
+    .floating-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #5291b8;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
       font-size: 1.2em;
-      color: #666;
-      margin-top: 40px;
+      z-index: 1000;
+      display: none;
+    }
+    #mensaje-vacio {
+      font-size: 1.5em;
+      color: #888;
+      text-align: center;
+      margin-top: 50px;
       display: none;
     }
   </style>
@@ -69,12 +82,17 @@
 <body>
 
   <div id="solicitudes-container"></div>
-  <div id="mensaje-vacio">El buzón de solicitudes está vacío.</div>
+
+  <div id="mensaje-vacio">El buzón de solicitudes se encuentra vacío.</div>
 
   <div class="footer">
     <button class="btn btn-primary" onclick="window.location.href='bienvenido.html'">Volver</button>
   </div>
 
+  <!-- Mensaje flotante -->
+  <div id="mensaje-vacio" class="floating-message" style="display:none;">Registro exitoso. Solicite al alumno la confirmación.</div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="Solicitudes.js"></script>
 </body>
 </html>

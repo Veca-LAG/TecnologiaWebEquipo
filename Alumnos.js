@@ -25,5 +25,12 @@ const alumnos = [
         nombre: "Carlos Lopez Martinez",
         carrera: "Licenciatura en Informática",
         semestre: 4
+      },
+
+      {
+        matricula: "2021120119",
+        nombre: "Ernesto Ramos Cruz",
+        carrera: "Licenciatura en Informática",
+        semestre: 8
       }
 ];

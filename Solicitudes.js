@@ -87,8 +87,16 @@ function crearSolicitudHTML(s, index) {
   `;
 }
 
+function showFloatingMessage(message) {
+  const $message = $('<div class="floating-message">').text(message);
+  $('body').append($message);
+  
+  // Mostrar el mensaje flotante con animación
+  $message.fadeIn().delay(3000).fadeOut();
+}
+
 function registrarSolicitud(id) {
-  alert("Registro exitoso. Solicite al alumno la confirmación");
+  showFloatingMessage("Registro exitoso. Solicite al alumno la confirmación");
   const elemento = document.getElementById(id);
   if (elemento) {
     elemento.remove();
@@ -101,18 +109,20 @@ function actualizarMensajeVacio() {
   const mensaje = document.getElementById("mensaje-vacio");
 
   if (solicitudesVisibles.length === 0) {
-    mensaje.style.display = "block";
+    mensaje.style.display = "block";  // Mostrar mensaje si no hay solicitudes
   } else {
-    mensaje.style.display = "none";
+    mensaje.style.display = "none";  // Ocultar mensaje si hay solicitudes
   }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   const contenedor = document.getElementById("solicitudes-container");
 
+  // Si hay solicitudes, mostrarlas
   solicitudes.forEach((s, i) => {
     contenedor.innerHTML += crearSolicitudHTML(s, i);
   });
 
+  // Actualizar el mensaje si no hay solicitudes
   actualizarMensajeVacio();
 });
