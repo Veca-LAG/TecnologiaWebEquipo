@@ -66,6 +66,12 @@
         </select>
       </div>
 
+      <!-- Fecha de reserva -->
+      <div class="mb-3">
+        <label for="fecha-reserva" class="form-label">Fecha de reserva:</label>
+        <input type="date" class="form-control" id="fecha-reserva" required>
+      </div>
+
       <!-- Horario -->
       <div class="row mb-3">
         <div class="col-md-6">
@@ -115,11 +121,24 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- Script externo solo con la base de alumnos -->
-  <script src="alumnos.js"></script>
+  <!-- Script con la base de alumnos -->
+  <script>
+    // Base de datos de alumnos (simulada)
+    const alumnos = [
+      { matricula: "A12345", nombre: "Juan Pérez López", carrera: "Ingeniería en Sistemas", semestre: "6" },
+      { matricula: "A67890", nombre: "María García Ruiz", carrera: "Licenciatura en Informática", semestre: "4" },
+      { matricula: "B12345", nombre: "Carlos Martínez Sánchez", carrera: "Ingeniería en Software", semestre: "8" },
+      { matricula: "B67890", nombre: "Ana Rodríguez Fernández", carrera: "Ciencias de la Computación", semestre: "5" }
+    ];
+  </script>
   
   <script>
     $(document).ready(function() {
+      // Inicializar matriz de reservas si no existe
+      if (!localStorage.getItem('reservas')) {
+        localStorage.setItem('reservas', JSON.stringify([]));
+      }
+
       // Función para buscar alumno por matrícula
       function buscarAlumnoPorMatricula(matricula) {
         return alumnos.find(alumno => alumno.matricula === matricula);
@@ -143,6 +162,20 @@
         }
       });
 
+      // Validar horario según día de la semana
+      $("#fecha-reserva").change(function() {
+        const fecha = new Date($(this).val());
+        const diaSemana = fecha.getDay(); // 0=Domingo, 1=Lunes, ..., 6=Sábado
+        
+        if (diaSemana > 0 && diaSemana < 6) { // Día laboral (lunes a viernes)
+          $("#hora-entrada").attr("min", "18:00");
+          $("#hora-salida").attr("min", "18:00");
+        } else {
+          $("#hora-entrada").removeAttr("min");
+          $("#hora-salida").removeAttr("min");
+        }
+      });
+
       // Procesar el formulario
       $("#formularioReserva").submit(function(e) {
         e.preventDefault();
@@ -155,11 +188,25 @@
           return;
         }
 
+        // Validar horario de salida mayor que entrada
+        const horaEntrada = $("#hora-entrada").val();
+        const horaSalida = $("#hora-salida").val();
+        
+        if (horaSalida <= horaEntrada) {
+          alert("La hora de salida debe ser posterior a la hora de entrada");
+          return;
+        }
+
         // Obtener equipos seleccionados
         const equipos = [];
         $('input[type="checkbox"]:checked').each(function() {
           equipos.push($(this).val());
         });
+
+        if (equipos.length === 0) {
+          alert("Por favor seleccione al menos un equipo");
+          return;
+        }
 
         // Crear objeto con los datos de la reserva
         const reserva = {
@@ -168,13 +215,25 @@
           carrera: alumno.carrera,
           semestre: alumno.semestre,
           sala: $("#sala").val(),
-          entrada: $("#hora-entrada").val(),
-          salida: $("#hora-salida").val(),
-          equipos: equipos
+          fecha: $("#fecha-reserva").val(),
+          entrada: horaEntrada,
+          salida: horaSalida,
+          equipos: equipos,
+          estado: "pendiente", // Puede ser "pendiente", "confirmada", "cancelada"
+          fechaRegistro: new Date().toISOString()
         };
 
         // Guardar reserva en localStorage
         localStorage.setItem('reservaActual', JSON.stringify(reserva));
+        
+        // Obtener todas las reservas existentes
+        let reservas = JSON.parse(localStorage.getItem('reservas'));
+        
+        // Agregar la nueva reserva
+        reservas.push(reserva);
+        
+        // Guardar la matriz actualizada
+        localStorage.setItem('reservas', JSON.stringify(reservas));
         
         // Redirigir a la página de reporte
         window.location.href = "reporteAlumno.html";
@@ -184,6 +243,10 @@
       $("#volverBtn").click(function() {
         window.location.href = "Bienvenido.html";
       });
+
+      // Establecer fecha mínima como hoy
+      const hoy = new Date().toISOString().split('T')[0];
+      $("#fecha-reserva").attr('min', hoy);
     });
   </script>
 </body>
