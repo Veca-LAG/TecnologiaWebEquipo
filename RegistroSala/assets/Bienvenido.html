@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservar Salas de Cómputo</title>
+  <link rel="stylesheet" href="Css/Bienvenido.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="menu-button" onclick="toggleMenu()">☰</div>
+    <h1>Reservar Salas de Computo</h1>
+    <h2>UNIVERSIDAD DEL MAR</h2>
+  </div>
+
+  <div id="menu" class="menu">
+    <a href="formulario.html">Crear registro</a>
+    <a href="#" id="Reporte">Reporte</a>
+    <a href="#" id="verificar">Verificar asistencia</a>
+    <a href="#" id="salir">Salir</a>
+  </div>
+
+  <div class="welcome" id="nombre-usuario">Bienvenido</div>
+  <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar">
+
+  <div class="footer-bar"></div>
+
+  <script>
+    const menu = document.getElementById('menu');
+    const menuButton = document.querySelector('.menu-button');
+
+    function toggleMenu() {
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    window.addEventListener('click', function(e) {
+      if (!menu.contains(e.target) && !menuButton.contains(e.target)) {
+        menu.style.display = 'none';
+      }
+    });
+
+    const nombre = localStorage.getItem('nombreUsuario');
+    const nombreUsuarioDiv = document.getElementById('nombre-usuario');
+
+    if (nombre) {
+      nombreUsuarioDiv.textContent = `Bienvenido ${nombre}`;
+    } else {
+      nombreUsuarioDiv.textContent = 'Bienvenido usuario';
+    }
+
+    document.getElementById('salir').addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.removeItem('nombreUsuario');
+      window.location.href = 'index.html';
+    });
+
+    document.getElementById('Reporte').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'reporteFin.html';
+    });
+
+    document.getElementById('verificar').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'Solicitudes.html';
+    });
+  </script>
+</body>
+</html>

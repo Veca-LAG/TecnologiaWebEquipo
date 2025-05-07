@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio de sesión</title>
+  <link rel="stylesheet" href="Css/inicio.css">
+</head>
+<body>
+  <div class="contenedor">
+    <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar">
+    <h2>Reservar Salas de Cómputo</h2>
+    <p>UNIVERSIDAD DEL MAR</p>
+    <h3>Inicio de sesión</h3>
+    <input type="text" id="matricula" placeholder="Ingrese su matrícula">
+    <br>
+    <button onclick="validarMatricula()">INICIAR SESIÓN</button>
+  </div>
+
+  <script src="Js/Alumnos.js"></script>
+  <script>
+    function validarMatricula() {
+      const input = document.getElementById("matricula").value.trim();
+      const alumno = alumnos.find(a => a.matricula === input);
+
+      if (alumno) {
+        localStorage.setItem("alumno", JSON.stringify(alumno));
+        window.location.href = "reporteAlumno.html";
+      } else {
+        alert("Matrícula inválida.");
+      }
+    }
+  </script>
+</body>
+</html>

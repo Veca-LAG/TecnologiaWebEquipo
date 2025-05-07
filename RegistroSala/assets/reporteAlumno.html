@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reporte de Reserva</title>
+  <link rel="stylesheet" href="Css/Reporte_alumno.css">
+
+</head>
+<body>
+  <div class="container">
+    <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar">
+    <h1>Reporte de Reserva</h1>
+    <div class="dato" id="info"></div>
+  </div>
+
+  <div class="footer-bar">
+    <button id="btnAceptar" class="btn-aceptar">Aceptar</button>
+    <button id="btnSalir" class="btn-salir">Salir</button>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      const reserva = JSON.parse(localStorage.getItem('reservaActual'));
+
+      if (reserva) {
+        $("#info").html(`
+          <p><strong>Nombre:</strong> ${reserva.nombre}</p>
+          <p><strong>Matrícula:</strong> ${reserva.matricula}</p>
+          <p><strong>Carrera:</strong> ${reserva.carrera}</p>
+          <p><strong>Semestre:</strong> ${reserva.semestre}</p>
+          <p><strong>Sala:</strong> ${reserva.sala}</p>
+          <p><strong>Fecha:</strong> ${reserva.fecha}</p>
+          <p><strong>Hora de entrada:</strong> ${reserva.entrada}</p>
+          <p><strong>Hora de salida:</strong> ${reserva.salida}</p>
+          <p><strong>Equipo solicitado:</strong> ${reserva.equipos.join(', ')}</p>
+        `);
+      } else {
+        $("#info").text('No hay datos disponibles.');
+      }
+
+      $("#btnAceptar").click(function() {
+        // Obtener reservas confirmadas o crear array vacío
+        let reservasConfirmadas = JSON.parse(localStorage.getItem('reservasConfirmadas')) || [];
+        
+        // Añadir la reserva actual
+        reservasConfirmadas.push(reserva);
+        
+        // Guardar en localStorage
+        localStorage.setItem('reservasConfirmadas', JSON.stringify(reservasConfirmadas));
+        
+        showFloatingMessage("Solicitud aceptada");
+      });
+
+      $("#btnSalir").click(function() {
+        window.location.href = "indexAlumno.html";
+      });
+
+      function showFloatingMessage(message) {
+        const $message = $('<div class="floating-message">').text(message);
+        $('body').append($message);
+        setTimeout(() => {
+          $message.remove();
+        }, 3000);
+      }
+    });
+  </script>
+</body>
+</html>

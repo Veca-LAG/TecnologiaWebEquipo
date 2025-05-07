@@ -1,0 +1,24 @@
+body {
+    background-color: #f8f9fa;
+  }
+  
+  .reserva-container {
+    max-width: 700px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  }
+  
+  .footer-bar {
+    background-color: #6a2016;
+    height: 60px;
+  }
+  
+  .logo {
+    width: 100px;
+  }
+  
+  .equipo-checkbox {
+    margin-right: 15px;
+  }
+  
