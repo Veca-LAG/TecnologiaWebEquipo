@@ -15,7 +15,7 @@
 
   <div id="menu" class="menu">
     <a href="formulario.html">Crear registro</a>
-    <a href="#">Reporte</a>
+    <a href="#" id="Reporte">Reporte</a>
     <a href="#" id="verificar">Verificar asistencia</a>
     <a href="#" id="salir">Salir</a>
   </div>
@@ -52,6 +52,11 @@
       e.preventDefault();
       localStorage.removeItem('nombreUsuario');
       window.location.href = 'index.html';
+    });
+
+    document.getElementById('Reporte').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'reporteFin.html';
     });
 
     document.getElementById('verificar').addEventListener('click', function(e) {

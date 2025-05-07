@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <title>Reporte</title>
     <link rel="stylesheet" href="Css/reporteFin.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 
 <header>
     <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar">
-    <h2>Reporte</h2>
+    <h2>Reporte de Reservas Confirmadas</h2>
 </header>
 
-<table>
+<table id="tablaReservas">
     <thead>
         <tr>
             <th>Matrícula</th>
@@ -20,31 +23,52 @@
             <th>Carrera</th>
             <th>Semestre</th>
             <th>Sala</th>
-            <th>Fecha de entrada</th>
-            <th>Hora de entrada</th>
-            <th>Fecha de salida</th>
-            <th>Hora de salida</th>
-            <th>Equipo solicitado</th>
-            <th>Persona encargada</th>
+            <th>Fecha</th>
+            <th>Hora Entrada</th>
+            <th>Hora Salida</th>
+            <th>Equipos</th>
+            <th>Estado</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td></td><td></td><td></td><td></td><td></td>
-            <td></td><td></td><td></td><td></td><td></td>
-            <td></td><td></td>
-        </tr>
-        <tr>
-            <td></td><td></td><td></td><td></td><td></td>
-            <td></td><td></td><td></td><td></td><td></td>
-            <td></td><td></td>
-        </tr>
+        <!-- Las filas se llenarán con JavaScript -->
     </tbody>
 </table>
 
 <footer>
-    ©Pie de página
+    © Universidad del Mar - Sistema de Reservas
 </footer>
 
+<script>
+    $(document).ready(function() {
+        // Obtener reservas confirmadas
+        const reservas = JSON.parse(localStorage.getItem('reservasConfirmadas')) || [];
+        
+        // Llenar la tabla
+        const $tbody = $('#tablaReservas tbody');
+        
+        reservas.forEach(reserva => {
+            const $tr = $('<tr>');
+            
+            $tr.append(`<td>${reserva.matricula}</td>`);
+            $tr.append(`<td>${reserva.nombre}</td>`);
+            $tr.append(`<td>${reserva.carrera}</td>`);
+            $tr.append(`<td>${reserva.semestre}</td>`);
+            $tr.append(`<td>Sala ${reserva.sala}</td>`);
+            $tr.append(`<td>${reserva.fecha}</td>`);
+            $tr.append(`<td>${reserva.entrada}</td>`);
+            $tr.append(`<td>${reserva.salida}</td>`);
+            $tr.append(`<td>${reserva.equipos.join(', ')}</td>`);
+            $tr.append(`<td>${reserva.estado}</td>`);
+            
+            $tbody.append($tr);
+        });
+        
+        // Si no hay reservas, mostrar mensaje
+        if (reservas.length === 0) {
+            $tbody.append('<tr><td colspan="10" style="text-align: center;">No hay reservas confirmadas</td></tr>');
+        }
+    });
+</script>
 </body>
 </html>

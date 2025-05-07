@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Reporte de Reserva</title>
   <link rel="stylesheet" href="Css/Reporte_alumno.css">
+
 </head>
 <body>
   <div class="container">
@@ -31,6 +32,7 @@
           <p><strong>Carrera:</strong> ${reserva.carrera}</p>
           <p><strong>Semestre:</strong> ${reserva.semestre}</p>
           <p><strong>Sala:</strong> ${reserva.sala}</p>
+          <p><strong>Fecha:</strong> ${reserva.fecha}</p>
           <p><strong>Hora de entrada:</strong> ${reserva.entrada}</p>
           <p><strong>Hora de salida:</strong> ${reserva.salida}</p>
           <p><strong>Equipo solicitado:</strong> ${reserva.equipos.join(', ')}</p>
@@ -40,6 +42,15 @@
       }
 
       $("#btnAceptar").click(function() {
+        // Obtener reservas confirmadas o crear array vacío
+        let reservasConfirmadas = JSON.parse(localStorage.getItem('reservasConfirmadas')) || [];
+        
+        // Añadir la reserva actual
+        reservasConfirmadas.push(reserva);
+        
+        // Guardar en localStorage
+        localStorage.setItem('reservasConfirmadas', JSON.stringify(reservasConfirmadas));
+        
         showFloatingMessage("Solicitud aceptada");
       });
 
