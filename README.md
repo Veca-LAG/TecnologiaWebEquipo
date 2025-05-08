@@ -23,8 +23,8 @@ Este proyecto es una aplicación web que permite registrar, gestionar y visualiz
 * Abre un "Issue" directamente en el repositorio de GitHub: Abrir un Issue
 * También puedes contactar directamente a cualquiera de los integrantes del equipo si tienes acceso institucional.
 ## Autores del proyecto
-* Camacho García Gabriel Sebastián
-* Jiménez Venegas Alejandra 
-* Ramos Barrera Ernesto Manuel 
-* Sánchez Jiménez Lizeth Elisa 
-* Velasco Naranjo Mane Isabela 
+* [Camacho García Gabriel Sebastián](https://github.com/SonicGamer227)
+* [Jiménez Venegas Alejandra](https://alejandrajimv.github.io/)
+* [Ramos Barrera Ernesto Manuel](https://github.com/netito74)
+* [Sánchez Jiménez Lizeth Elisa](https://github.com/Elis12519)
+* [Velasco Naranjo Mane Isabela](https://github.com/Veca-LAG)
