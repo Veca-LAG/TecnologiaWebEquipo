@@ -5,6 +5,7 @@ const solicitudes = [
     carrera: "Ingeniería en Computación",
     semestre: 6,
     grupo: "B",
+    sala: A,
     fecha: "15/05/2025",
     horaEntrada: "09:00 p.m.",
     horaSalida: "11:00 p.m.",
@@ -20,6 +21,7 @@ const solicitudes = [
     carrera: "Diseño Gráfico",
     semestre: 4,
     grupo: "A",
+    sala: B,
     fecha: "16/05/2025",
     horaEntrada: "10:00 a.m.",
     horaSalida: "12:00 p.m.",
@@ -35,6 +37,7 @@ const solicitudes = [
     carrera: "Enfermería",
     semestre: 4,
     grupo: "C",
+    sala: C,
     fecha: "16/05/2025",
     horaEntrada: "11:00 a.m.",
     horaSalida: "12:00 p.m.",
@@ -51,9 +54,6 @@ function crearSolicitudHTML(s, index) {
   return `
     <div class="container" id="${id}">
       <div class="header">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo UMar">
-        <h1>Reservar Salas de Cómputo</h1>
-        <h3>UNIVERSIDAD DEL MAR</h3>
         <div class="subtitulo">Solicitud recibida</div>
       </div>
 
@@ -69,6 +69,7 @@ function crearSolicitudHTML(s, index) {
           <span><strong>Grupo:</strong> ${s.grupo}</span>
         </div>
         <div class="row">
+        <span><strong>Grupo:</strong> ${s.sala}</span>
           <span><strong>Hora de entrada:</strong> ${s.horaEntrada}</span>
           <span><strong>Hora de salida:</strong> ${s.horaSalida}</span>
         </div>
