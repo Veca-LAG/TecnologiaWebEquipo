@@ -4,11 +4,11 @@
 ## Descripción del proyecto
 Este proyecto es una aplicación web que permite registrar, gestionar y visualizar información de alumnos para apartar una de las salas de computadoras de la institución. Fue desarrollado como parte del curso de Tecnología Web y utiliza tecnologías modernas como HTML, JavaScript y Bootstrap para lograr una experiencia intuitiva, responsiva y funcional.
 ## Funcionalidades
-    * Registro de alumnos con validación de datos.
-    * Registro de encargados de la sala respectiva.
-    * Redirección automatizada y mensajes de confirmación después de enviar formularios.
-    * Visualización de reportes intermedios y finales.
-    * Diseño responsivo utilizando Bootstrap.
+* Registro de alumnos con validación de datos.
+* Registro de encargados de la sala respectiva.
+* Redirección automatizada y mensajes de confirmación después de enviar formularios.
+* Visualización de reportes intermedios y finales.
+* Diseño responsivo utilizando Bootstrap.
 ## ¿Cómo pueden usarlo los usuarios?
 1. Descarga o clona el repositorio:
     [git clone](https://github.com/Veca-LAG/TecnologiaWebEquipo.git)
