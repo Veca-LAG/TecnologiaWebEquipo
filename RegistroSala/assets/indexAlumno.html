@@ -4,6 +4,53 @@
   <meta charset="UTF-8">
   <title>Inicio de sesión</title>
   <link rel="stylesheet" href="Css/inicio.css">
+  <style>
+    /* Estilos básicos para la hora actual */
+    #horaActual {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    /* Estilos para el modal */
+    .modal {
+      display: none; /* Oculto por defecto */
+      position: fixed; /* Fijo */
+      z-index: 1; /* En la parte superior */
+      left: 0;
+      top: 0;
+      width: 100%; /* Ancho completo */
+      height: 100%; /* Alto completo */
+      overflow: auto; /* Habilitar desplazamiento si es necesario */
+      background-color: rgb(0,0,0); /* Color de fondo */
+      background-color: rgba(0,0,0,0.4); /* Fondo negro con opacidad */
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% desde la parte superior y centrado */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; /* Ancho del modal */
+      text-align: center; /* Centrar texto */
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="contenedor">
@@ -14,21 +61,49 @@
     <input type="text" id="matricula" placeholder="Ingrese su matrícula">
     <br>
     <button onclick="validarMatricula()">INICIAR SESIÓN</button>
+    <div id="horaActual"></div>
+  </div>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal()">&times;</span>
+      <p id="mensajeBienvenida"></p>
+      <button onclick="cerrarModal()">Aceptar</button>
+    </div>
   </div>
 
   <script src="Js/Alumnos.js"></script>
   <script>
+    // Función para mostrar la hora actual
+    function mostrarHoraActual() {
+      const ahora = new Date();
+      const opciones = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      document.getElementById("horaActual").innerText = ahora.toLocaleTimeString('es-ES', opciones);
+    }
+
+    // Función para validar la matrícula
     function validarMatricula() {
       const input = document.getElementById("matricula").value.trim();
       const alumno = alumnos.find(a => a.matricula === input);
 
       if (alumno) {
+        const horaEntrada = new Date().toLocaleTimeString('es-ES');
+        document.getElementById("mensajeBienvenida").innerText = `Bienvenido a la Universidad del Mar. Tu hora de entrada es: ${horaEntrada}`;
+        document.getElementById("myModal").style.display = "block"; // Mostrar el modal
         localStorage.setItem("alumno", JSON.stringify(alumno));
-        window.location.href = "reporteAlumno.html";
       } else {
         alert("Matrícula inválida.");
       }
     }
+
+    // Función para cerrar el modal
+    function cerrarModal() {
+      document.getElementById("myModal").style.display = "none"; // Ocultar el modal
+    }
+
+    // Mostrar la hora actual al cargar la página
+    mostrarHoraActual();
+    setInterval(mostrarHoraActual, 1000); // Actualizar cada segundo
   </script>
-</body>
-</html>
+</
