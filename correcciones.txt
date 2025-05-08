@@ -21,3 +21,14 @@ inicio de sesión de parte del indexAlumno
     reporte.html
 
 
+
+    -------------------------------
+    Correciones y cosas faltantes
+    Base de datos
+    Limite de registro de sala
+    Numero libre (Numero de asiento)
+    Buen enlace de informacion 
+    Tipo de letra o tipografia para los titulos 
+
+
+
