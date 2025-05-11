@@ -16,6 +16,10 @@
     <h2>Reporte de Reservas Confirmadas</h2>
 </header>
 
+<div class="volver-wrapper d-flex justify-content-start p-3">
+    <button id="volverBtn" class="btn btn-primary btn-sm">← Volver</button>
+</div>
+
 <table id="tablaReservas">
     <thead>
         <tr>
@@ -69,7 +73,13 @@
         if (reservas.length === 0) {
             $tbody.append('<tr><td colspan="10" style="text-align: center;">No hay reservas confirmadas</td></tr>');
         }
+        // Botón para volver
+        $("#volverBtn").click(function() {
+                window.location.href = "Bienvenido.html";
+        });
+
     });
+
 </script>
 </body>
 </html>
