@@ -7,14 +7,14 @@ body {
   
   .header {
     background-color: white;
-    padding: 40px;
+    padding: 30px;
     text-align: center;
     position: relative;
   }
   
   .header h1 {
     margin: 0;
-    font-size: 28px;
+    font-size: 24px;
   }
   
   .header h2 {
@@ -83,3 +83,63 @@ body {
     width: 100%;
   }
   
+
+  @media (max-width: 768px) {
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .header h2 {
+        font-size: 12px;
+    }
+
+    .menu-button {
+        right: 15px;
+        font-size: 26px;
+    }
+
+
+    .menu a {
+        font-size: 16px;
+    }
+
+    .welcome {
+        font-size: 20px;
+    }
+
+    .logo {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .header h2 {
+        font-size: 12px;
+    }
+
+    .menu-button {
+        right: 10px;
+        font-size: 24px;
+    }
+
+    .menu a {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .welcome {
+        font-size: 18px;
+    }
+
+    .logo {
+        max-width: 120px;
+    }
+
+    .footer-bar {
+        height: 40px;
+    }
+}
