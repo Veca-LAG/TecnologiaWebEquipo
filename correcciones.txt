@@ -1,12 +1,12 @@
 Cuando se genera el roprte en el encargado marca que no existe reporte.html
-reporteAlumno.html se usa
-confirmacion.html se usa
-solicitudes.js se usa
+reporteAlumno.html se usa?
+confirmacion.html se usa?
+solicitudes.js se usa?
 
-poner el mensaje para verificar si de verdad quierre guardar el formulario
+poner el mensaje para verificar si de verdad quierre guardar el formulario? listo
 
 crear otro archivo de js para ingresar los datos del formulario generado por el encargado
-y estos se relacionen con la matricula para sacar la hora de entrada y salida
+y estos se relacionen con la matricula para sacar la hora de entrada y salida? listo
 
 
 
