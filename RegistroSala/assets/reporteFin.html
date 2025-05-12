@@ -5,9 +5,10 @@
     <title>Reporte</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Css/reporteFin.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 <body>
 
@@ -20,7 +21,7 @@
     <button id="volverBtn" class="btn btn-primary btn-sm">← Volver</button>
 </div>
 
-<table id="tablaReservas">
+<table id="tablaReservas" class="table table-striped">
     <thead>
         <tr>
             <th>Matrícula</th>
@@ -29,9 +30,11 @@
             <th>Semestre</th>
             <th>Sala</th>
             <th>Fecha</th>
-            <th>Hora Entrada</th>
-            <th>Hora Salida</th>
+            <th>Hora Reservada Entrada</th>
+            <th>Hora Reservada Salida</th>
             <th>Equipos</th>
+            <th>Hora Real Entrada</th>
+            <th>Hora Real Salida</th>
             <th>Estado</th>
         </tr>
     </thead>
@@ -44,42 +47,69 @@
     © Universidad del Mar - Sistema de Reservas
 </footer>
 
+<script src="Js/Alumnos.js"></script>
 <script>
     $(document).ready(function() {
-        // Obtener reservas confirmadas
-        const reservas = JSON.parse(localStorage.getItem('reservasConfirmadas')) || [];
-        
-        // Llenar la tabla
-        const $tbody = $('#tablaReservas tbody');
-        
-        reservas.forEach(reserva => {
-            const $tr = $('<tr>');
+        // Función para cargar y mostrar las reservas
+        function cargarReservas() {
+            // Obtener reservas confirmadas
+            const reservas = JSON.parse(localStorage.getItem('reservasConfirmadas')) || [];
             
-            $tr.append(`<td>${reserva.matricula}</td>`);
-            $tr.append(`<td>${reserva.nombre}</td>`);
-            $tr.append(`<td>${reserva.carrera}</td>`);
-            $tr.append(`<td>${reserva.semestre}</td>`);
-            $tr.append(`<td>Sala ${reserva.sala}</td>`);
-            $tr.append(`<td>${reserva.fecha}</td>`);
-            $tr.append(`<td>${reserva.entrada}</td>`);
-            $tr.append(`<td>${reserva.salida}</td>`);
-            $tr.append(`<td>${reserva.equipos.join(', ')}</td>`);
-            $tr.append(`<td>${reserva.estado}</td>`);
+            // Limpiar la tabla
+            const $tbody = $('#tablaReservas tbody');
+            $tbody.empty();
             
-            $tbody.append($tr);
-        });
-        
-        // Si no hay reservas, mostrar mensaje
-        if (reservas.length === 0) {
-            $tbody.append('<tr><td colspan="10" style="text-align: center;">No hay reservas confirmadas</td></tr>');
+            // Ordenar reservas por fecha y hora (más recientes primero)
+            reservas.sort((a, b) => {
+                const fechaA = new Date(`${a.fecha} ${a.entrada}`);
+                const fechaB = new Date(`${b.fecha} ${b.entrada}`);
+                return fechaB - fechaA;
+            });
+            
+            // Llenar la tabla con las reservas ordenadas
+            reservas.forEach(reserva => {
+                const $tr = $('<tr>');
+                
+                $tr.append(`<td>${reserva.matricula}</td>`);
+                $tr.append(`<td>${reserva.nombre}</td>`);
+                $tr.append(`<td>${reserva.carrera}</td>`);
+                $tr.append(`<td>${reserva.semestre}</td>`);
+                $tr.append(`<td>Sala ${reserva.sala}</td>`);
+                $tr.append(`<td>${reserva.fecha}</td>`);
+                $tr.append(`<td>${reserva.entrada}</td>`);
+                $tr.append(`<td>${reserva.salida}</td>`);
+                $tr.append(`<td>${reserva.equipos.join(', ')}</td>`);
+                $tr.append(`<td>${reserva.horaRealEntrada || 'No registrada'}</td>`);
+                $tr.append(`<td>${reserva.horaRealSalida || 'No registrada'}</td>`);
+                
+                // Color según estado
+                let estadoClass = '';
+                if (reserva.estado === "Reservado") estadoClass = 'text-warning';
+                if (reserva.estado === "En uso") estadoClass = 'text-primary';
+                if (reserva.estado === "Finalizado") estadoClass = 'text-success';
+                
+                $tr.append(`<td class="${estadoClass}">${reserva.estado}</td>`);
+                
+                $tbody.append($tr);
+            });
+            
+            // Si no hay reservas, mostrar mensaje
+            if (reservas.length === 0) {
+                $tbody.append('<tr><td colspan="12" style="text-align: center;">No hay reservas confirmadas</td></tr>');
+            }
         }
+        
+        // Cargar reservas al inicio
+        cargarReservas();
+        
         // Botón para volver
         $("#volverBtn").click(function() {
-                window.location.href = "Bienvenido.html";
+            window.location.href = "Bienvenido.html";
         });
-
+        
+        // Opcional: Actualizar automáticamente cada 5 segundos
+        setInterval(cargarReservas, 5000);
     });
-
 </script>
 </body>
 </html>

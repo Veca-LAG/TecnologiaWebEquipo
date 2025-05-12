@@ -5,87 +5,6 @@
   <title>Inicio de sesión</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Css/inicio.css">
-  <style>
-  /* Contenedor principal */
-    body {
-        background-color: #2c9dbf;
-    }
-
-    .contenedor {
-        max-width: 400px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
-    }
-
-    .logo {
-        width: 100px;
-        max-width: 80%;
-        margin-bottom: 10px;
-    }
-
-    h2 {
-        font-size: 22px;
-        margin-bottom: 5px;
-    }
-
-    p {
-        font-size: 16px;
-        color: #666;
-        margin-top: 0;
-    }
-
-    h3 {
-        font-size: 18px;
-        margin-top: 20px;
-    }
-
-    /* Estilos básicos para la hora actual */
-    #horaActual {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-    /* Estilos para el modal */
-    .modal {
-      display: none; /* Oculto por defecto */
-      position: fixed; /* Fijo */
-      z-index: 1; /* En la parte superior */
-      left: 0;
-      top: 0;
-      width: 100%; /* Ancho completo */
-      height: 100%; /* Alto completo */
-      overflow: auto; /* Habilitar desplazamiento si es necesario */
-      background-color: rgb(0,0,0); /* Color de fondo */
-      background-color: rgba(0,0,0,0.4); /* Fondo negro con opacidad */
-    }
-
-    .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto; /* 15% desde la parte superior y centrado */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%; /* Ancho del modal */
-      text-align: center; /* Centrar texto */
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  </style>
 </head>
 <body>
   <div class="contenedor">
@@ -110,35 +29,60 @@
 
   <script src="Js/Alumnos.js"></script>
   <script>
-    // Función para mostrar la hora actual
-    function mostrarHoraActual() {
-      const ahora = new Date();
-      const opciones = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
-      document.getElementById("horaActual").innerText = ahora.toLocaleTimeString('es-ES', opciones);
-    }
-
     // Función para validar la matrícula
     function validarMatricula() {
       const input = document.getElementById("matricula").value.trim();
       const alumno = alumnos.find(a => a.matricula === input);
 
       if (alumno) {
-        const horaEntrada = new Date().toLocaleTimeString('es-ES');
-        document.getElementById("mensajeBienvenida").innerText = `Bienvenido a la Universidad del Mar. Tu hora de entrada es: ${horaEntrada}`;
-        document.getElementById("myModal").style.display = "block"; // Mostrar el modal
+        const ahora = new Date();
+        const horaEntrada = ahora.toLocaleTimeString('es-ES', {hour: '2-digit', minute: '2-digit'});
+        
+        // Obtener reservas del alumno
+        let reservas = JSON.parse(localStorage.getItem('reservasConfirmadas')) || [];
+        
+        // Buscar reservas activas del alumno
+        const reservasAlumno = reservas.filter(r => 
+          r.matricula === input && 
+          (r.estado === "Reservado" || r.estado === "En uso") &&
+          (!r.horaRealEntrada || !r.horaRealSalida)
+        );
+        
+        if (reservasAlumno.length > 0) {
+          // Actualizar la primera reserva encontrada
+          const reserva = reservasAlumno[0];
+          
+          if (!reserva.horaRealEntrada) {
+            // Registrar entrada
+            reserva.horaRealEntrada = horaEntrada;
+            reserva.estado = "En uso";
+            document.getElementById("mensajeBienvenida").innerHTML = 
+              `Bienvenido ${alumno.nombre}<br>
+               Hora de entrada registrada: ${horaEntrada}<br>
+               Sala asignada: ${reserva.sala}`;
+          } else {
+            // Registrar salida
+            reserva.horaRealSalida = horaEntrada;
+            reserva.estado = "Finalizado";
+            document.getElementById("mensajeBienvenida").innerHTML = 
+              `Sesión finalizada ${alumno.nombre}<br>
+               Hora de salida registrada: ${horaEntrada}<br>
+               Gracias por usar nuestras instalaciones`;
+          }
+          
+          // Actualizar localStorage
+          localStorage.setItem('reservasConfirmadas', JSON.stringify(reservas));
+        } else {
+          document.getElementById("mensajeBienvenida").innerHTML = 
+            `Bienvenido ${alumno.nombre}<br>
+             No tienes reservas activas en este momento.`;
+        }
+        
+        document.getElementById("myModal").style.display = "block";
         localStorage.setItem("alumno", JSON.stringify(alumno));
       } else {
         alert("Matrícula inválida.");
       }
     }
-
-    // Función para cerrar el modal
-    function cerrarModal() {
-      document.getElementById("myModal").style.display = "none"; // Ocultar el modal
-    }
-
-    // Mostrar la hora actual al cargar la página
-    mostrarHoraActual();
-    setInterval(mostrarHoraActual, 1000); // Actualizar cada segundo
-  </script>
+</script>
 </body>
