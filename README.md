@@ -13,10 +13,15 @@ Este proyecto es una aplicación web que permite registrar, gestionar y visualiz
 1. Descarga o clona el repositorio:
     [git clone](https://github.com/Veca-LAG/TecnologiaWebEquipo.git)
 2. Abre index.html en un navegador web.
-3. Explora las funciones:
-* Accede al formulario de registro desde el menú.
-* Llena la información de alumno.
-* Visualiza la confirmación y consulta los reportes.
+3. Explora las funciones segun el usuario:
+   * Para el Guardia:
+    - Registrar solicitudes de acceso ingresando la matrícula del estudiante.
+    - El sistema autocompleta la información del estudiante desde la base de datos.
+- Registrar fecha y hora de entrada y salida.
+    - Consultar reportes de todas las solicitudes realizadas.
+   * Para el Estudiante
+    - Consultar si tiene una reserva activa.
+    - Ver la hora de entrada y salida asignada.
 4. No se requiere instalación de software adicional, ya que todo corre en el navegador.
 ## ¿Dónde los usuarios pueden encontrar ayuda sobre su proyecto?
 * Consulta el código fuente comentado
