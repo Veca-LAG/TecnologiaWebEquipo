@@ -4,6 +4,7 @@
 ## Descripción del proyecto
 Este proyecto es una aplicación web que permite registrar, gestionar y visualizar información de alumnos para apartar una de las salas de computadoras de la institución. Fue desarrollado como parte del curso de Tecnología Web y utiliza tecnologías modernas como HTML, JavaScript y Bootstrap para lograr una experiencia intuitiva, responsiva y funcional.
 ## Funcionalidades
+![imagen](https://github.com/user-attachments/assets/41c97798-917a-42f2-a4a8-a8dbad8ac7d2)
 * Registro de alumnos con validación de datos.
 * Registro de encargados de la sala respectiva.
 * Redirección automatizada y mensajes de confirmación después de enviar formularios.
