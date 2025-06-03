@@ -34,3 +34,6 @@ Este proyecto es una aplicación web que permite registrar, gestionar y visualiz
 * [Ramos Barrera Ernesto Manuel](https://github.com/netito74)
 * [Sánchez Jiménez Lizeth Elisa](https://github.com/Elis12519)
 * [Velasco Naranjo Mane Isabela](https://github.com/Veca-LAG)
+
+## Licencia
+<a href="https://github.com/Veca-LAG/TecnologiaWebEquipo/tree/main">Sistema de sesiones de salas de cómputo</a> 2025 por <a href="https://github.com/Veca-LAG/TecnologiaWebEquipo/tree/main">Camacho García Gabriel Sebastián, Jiménez Venegas Alejandra, Ramos Barrera Ernesto Manuel, Sánchez Jiménez Lizeth Elisa y Velasco Naranjo Mane Isabela</a> está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Atribution-NonCommercial-ShareAlike 4.0 International</a>
