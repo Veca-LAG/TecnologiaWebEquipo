@@ -1,4 +1,3 @@
-@@ -1,171 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,15 +19,42 @@
     </div>
 
     <form id="formularioReserva">
-      <div class="mb-3">
-        <label for="matricula" class="form-label">Matrícula:</label>
-        <input type="text" class="form-control" id="matricula" required>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="registroGrupal">
+        <label class="form-check-label" for="registroGrupal">Registro grupal</label>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Datos del alumno:</label>
-        <div id="datos-alumno" class="alert alert-info p-2">
-          Ingrese su matrícula para autocompletar
+      <!-- Individual -->
+      <div id="seccionIndividual">
+        <div class="mb-3">
+          <label for="matricula" class="form-label">Matrícula:</label>
+          <input type="text" class="form-control" id="matricula">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Datos del alumno:</label>
+          <div id="datos-alumno" class="alert alert-info p-2">
+            Ingrese su matrícula para autocompletar
+          </div>
+        </div>
+      </div>
+
+      <!-- Grupal -->
+      <div id="seccionGrupal" style="display: none;">
+        <div class="mb-3">
+          <label for="encargado" class="form-label">Nombre del encargado:</label>
+          <input type="text" class="form-control" id="encargado">
+        </div>
+
+        <div class="mb-3">
+          <label for="matriculaGrupal" class="form-label">Matrícula del alumno:</label>
+          <input type="text" class="form-control" id="matriculaGrupal">
+          <button type="button" class="btn btn-secondary mt-2" id="agregarAlumno">Agregar alumno</button>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Alumnos agregados:</label>
+          <ul id="listaAlumnos" class="list-group"></ul>
         </div>
       </div>
 
@@ -86,21 +112,26 @@
     <button id="volverBtn" class="btn btn-light btn-sm me-2">Volver</button>
   </div>
 
-  <!-- jQuery y Bootstrap JS -->
+  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Script externo con base de alumnos -->
   <script src="Js/Alumnos.js"></script>
 
-  <!-- Script principal -->
   <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
+      const alumnosAgregados = [];
+
       function buscarAlumnoPorMatricula(matricula) {
         return alumnos.find(alumno => alumno.matricula === matricula);
       }
 
-      $("#matricula").on('input', function() {
+      $("#registroGrupal").change(function () {
+        const grupal = $(this).is(":checked");
+        $("#seccionIndividual").toggle(!grupal);
+        $("#seccionGrupal").toggle(grupal);
+      });
+
+      $("#matricula").on('input', function () {
         const matricula = $(this).val().trim();
         const alumno = buscarAlumnoPorMatricula(matricula);
 
@@ -117,53 +148,86 @@
         }
       });
 
-      $("#formularioReserva").submit(function(e) {
-        e.preventDefault();
-
-        const matricula = $("#matricula").val().trim();
+      $("#agregarAlumno").click(function () {
+        const matricula = $("#matriculaGrupal").val().trim();
         const alumno = buscarAlumnoPorMatricula(matricula);
 
-        if (!alumno) {
-          alert("Por favor ingrese una matrícula válida");
-          return;
+        if (alumno && !alumnosAgregados.find(a => a.matricula === matricula)) {
+          alumnosAgregados.push(alumno);
+          $("#listaAlumnos").append(`<li class="list-group-item">${alumno.nombre} (${alumno.matricula})</li>`);
+          $("#matriculaGrupal").val('');
+        } else {
+          alert("Matrícula no válida o ya agregada");
         }
+      });
 
-        const confirmacion = confirm("¿Está seguro de hacer el registro?");
-        if (confirmacion) {
-          const equipos = [];
-          $('input[type="checkbox"]:checked').each(function() {
-            equipos.push($(this).val());
-          });
+      $("#formularioReserva").submit(function (e) {
+        e.preventDefault();
 
-          const hoy = new Date();
-          const fecha = hoy.toLocaleDateString('es-MX'); // formato dd/mm/aaaa
+        const esGrupal = $("#registroGrupal").is(":checked");
+        let reservas = [];
 
-          const reserva = {
-            matricula: matricula,
+        if (esGrupal) {
+          const encargado = $("#encargado").val().trim();
+          if (!encargado) {
+            alert("Debe ingresar el nombre del encargado.");
+            return;
+          }
+          if (alumnosAgregados.length === 0) {
+            alert("Debe agregar al menos un alumno.");
+            return;
+          }
+
+          reservas = alumnosAgregados.map(alumno => ({
+            matricula: alumno.matricula,
+            nombre: alumno.nombre,
+            carrera: alumno.carrera,
+            semestre: alumno.semestre,
+            encargado: encargado,
+            sala: $("#sala").val(),
+            fecha: new Date().toLocaleDateString('es-MX'),
+            entrada: $("#hora-entrada").val(),
+            salida: $("#hora-salida").val(),
+            equipos: $('input[type="checkbox"]:checked').map(function () {
+              return $(this).val();
+            }).get(),
+            estado: "undefined"
+          }));
+        } else {
+          const matricula = $("#matricula").val().trim();
+          const alumno = buscarAlumnoPorMatricula(matricula);
+
+          if (!alumno) {
+            alert("Por favor ingrese una matrícula válida");
+            return;
+          }
+
+          reservas.push({
+            matricula: alumno.matricula,
             nombre: alumno.nombre,
             carrera: alumno.carrera,
             semestre: alumno.semestre,
             sala: $("#sala").val(),
-            fecha: fecha,
+            fecha: new Date().toLocaleDateString('es-MX'),
             entrada: $("#hora-entrada").val(),
             salida: $("#hora-salida").val(),
-            equipos: equipos,
+            equipos: $('input[type="checkbox"]:checked').map(function () {
+              return $(this).val();
+            }).get(),
             estado: "undefined"
-          };
+          });
+        }
 
-          // Guardar en localStorage como arreglo
+        const confirmacion = confirm("¿Está seguro de hacer el registro?");
+        if (confirmacion) {
           const reservasGuardadas = JSON.parse(localStorage.getItem('reservasConfirmadas')) || [];
-          reservasGuardadas.push(reserva);
+          reservasGuardadas.push(...reservas);
           localStorage.setItem('reservasConfirmadas', JSON.stringify(reservasGuardadas));
-
           window.location.href = "reporteFin.html";
-        } else {
-          $("#formularioReserva")[0].reset();
-          $("#datos-alumno").html("Ingrese su matrícula para autocompletar");
         }
       });
 
-      $("#volverBtn").click(function() {
+      $("#volverBtn").click(function () {
         window.location.href = "Bienvenido.html";
       });
     });
