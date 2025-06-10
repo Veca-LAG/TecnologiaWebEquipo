@@ -73,3 +73,19 @@ footer {
     padding: 20px;
     background-color: #f2f2f2;
 }
+
+#volverBtn {
+    background-color: #1a3d6d;
+    color: white;
+    padding: 10px 20px;
+    margin-bottom: 50px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #volverBtn:hover {
+    background-color: #15406c;
+  }
