@@ -160,72 +160,103 @@
           alert("Matrícula no válida o ya agregada");
         }
       });
+$("#formularioReserva").submit(function (e) {
+  e.preventDefault();
 
-      $("#formularioReserva").submit(function (e) {
-        e.preventDefault();
+  const esGrupal = $("#registroGrupal").is(":checked");
+  let reservas = [];
 
-        const esGrupal = $("#registroGrupal").is(":checked");
-        let reservas = [];
+  if (esGrupal) {
+    const encargado = $("#encargado").val().trim();
+    if (!encargado) {
+      alert("Debe ingresar el nombre del encargado.");
+      return;
+    }
+    if (alumnosAgregados.length === 0) {
+      alert("Debe agregar al menos un alumno.");
+      return;
+    }
 
-        if (esGrupal) {
-          const encargado = $("#encargado").val().trim();
-          if (!encargado) {
-            alert("Debe ingresar el nombre del encargado.");
-            return;
-          }
-          if (alumnosAgregados.length === 0) {
-            alert("Debe agregar al menos un alumno.");
-            return;
-          }
+    reservas = alumnosAgregados.map(alumno => ({
+      matricula: alumno.matricula,
+      nombre: alumno.nombre,
+      carrera: alumno.carrera,
+      semestre: alumno.semestre,
+      encargado: encargado,
+      sala: $("#sala").val(),
+      fecha: new Date().toLocaleDateString('es-MX'),
+      entrada: $("#hora-entrada").val(),
+      salida: $("#hora-salida").val(),
+      equipos: $('input[type="checkbox"]:checked').map(function () {
+        return $(this).val();
+      }).get(),
+      estado: "undefined"
+    }));
+  } else {
+    const matricula = $("#matricula").val().trim();
+    const alumno = buscarAlumnoPorMatricula(matricula);
 
-          reservas = alumnosAgregados.map(alumno => ({
-            matricula: alumno.matricula,
-            nombre: alumno.nombre,
-            carrera: alumno.carrera,
-            semestre: alumno.semestre,
-            encargado: encargado,
-            sala: $("#sala").val(),
-            fecha: new Date().toLocaleDateString('es-MX'),
-            entrada: $("#hora-entrada").val(),
-            salida: $("#hora-salida").val(),
-            equipos: $('input[type="checkbox"]:checked').map(function () {
-              return $(this).val();
-            }).get(),
-            estado: "undefined"
-          }));
-        } else {
-          const matricula = $("#matricula").val().trim();
-          const alumno = buscarAlumnoPorMatricula(matricula);
+    if (!alumno) {
+      alert("Por favor ingrese una matrícula válida");
+      return;
+    }
 
-          if (!alumno) {
-            alert("Por favor ingrese una matrícula válida");
-            return;
-          }
+    reservas.push({
+      matricula: alumno.matricula,
+      nombre: alumno.nombre,
+      carrera: alumno.carrera,
+      semestre: alumno.semestre,
+      sala: $("#sala").val(),
+      fecha: new Date().toLocaleDateString('es-MX'),
+      entrada: $("#hora-entrada").val(),
+      salida: $("#hora-salida").val(),
+      equipos: $('input[type="checkbox"]:checked').map(function () {
+        return $(this).val();
+      }).get(),
+      estado: "undefined"
+    });
+  }
 
-          reservas.push({
-            matricula: alumno.matricula,
-            nombre: alumno.nombre,
-            carrera: alumno.carrera,
-            semestre: alumno.semestre,
-            sala: $("#sala").val(),
-            fecha: new Date().toLocaleDateString('es-MX'),
-            entrada: $("#hora-entrada").val(),
-            salida: $("#hora-salida").val(),
-            equipos: $('input[type="checkbox"]:checked').map(function () {
-              return $(this).val();
-            }).get(),
-            estado: "undefined"
-          });
-        }
+  // Código modal personalizado para confirmar:
+  const overlay = $('<div></div>').css({
+    position: 'fixed',
+    top: 0, left: 0, width: '100%', height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    display: 'flex', justifyContent: 'center', alignItems: 'center',
+    zIndex: 10000,
+  });
 
-        const confirmacion = confirm("¿Está seguro de hacer el registro?");
-        if (confirmacion) {
-          const reservasGuardadas = JSON.parse(localStorage.getItem('reservasConfirmadas')) || [];
-          reservasGuardadas.push(...reservas);
-          localStorage.setItem('reservasConfirmadas', JSON.stringify(reservasGuardadas));
-          window.location.href = "reporteFin.html";
-        }
-      });
+  const modal = $('<div></div>').css({
+    backgroundColor: 'white',
+    padding: '24px',
+    borderRadius: '12px',
+    boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+    textAlign: 'center',
+    maxWidth: '400px',
+    fontFamily: 'Arial, sans-serif',
+  });
+
+  modal.html(`
+    <p style="font-size: 18px; margin-bottom: 16px;">¿Está seguro de hacer el registro?</p>
+    <button id="btnSi" style="margin-right: 12px; padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 6px;">Sí</button>
+    <button id="btnNo" style="padding: 8px 16px; background-color: #f44336; color: white; border: none; border-radius: 6px;">No</button>
+  `);
+
+  overlay.append(modal);
+  $('body').append(overlay);
+
+  $('#btnSi').click(() => {
+    const reservasGuardadas = JSON.parse(localStorage.getItem('reservasConfirmadas')) || [];
+    reservasGuardadas.push(...reservas);
+    localStorage.setItem('reservasConfirmadas', JSON.stringify(reservasGuardadas));
+    window.location.href = "reporteFin.html";
+  });
+
+  $('#btnNo').click(() => {
+    overlay.remove();
+  });
+});
+
 
       $("#volverBtn").click(function () {
         window.location.href = "Bienvenido.html";
