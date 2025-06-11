@@ -69,7 +69,7 @@ function crearSolicitudHTML(s, index) {
           <span><strong>Grupo:</strong> ${s.grupo}</span>
         </div>
         <div class="row">
-        <span><strong>Grupo:</strong> ${s.sala}</span>
+        <span><strong>Sala:</strong> ${s.sala}</span>
           <span><strong>Hora de entrada:</strong> ${s.horaEntrada}</span>
           <span><strong>Hora de salida:</strong> ${s.horaSalida}</span>
         </div>
