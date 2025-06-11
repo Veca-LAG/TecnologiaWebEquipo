@@ -24,6 +24,8 @@ $(document).ready(function () {
     }
   });
 
+  let reservaActual = null;
+
   $formulario.on("submit", function (e) {
     e.preventDefault();
 
@@ -35,12 +37,6 @@ $(document).ready(function () {
       return;
     }
 
-    if (!confirm("¿Está seguro de hacer el registro?")) {
-      $formulario[0].reset();
-      $datosAlumno.text("Ingrese su matrícula para autocompletar");
-      return;
-    }
-
     const equipos = $('input[type="checkbox"]:checked').map(function () {
       return $(this).val();
     }).get();
@@ -48,7 +44,7 @@ $(document).ready(function () {
     const hoy = new Date();
     const fecha = hoy.toLocaleDateString("es-MX");
 
-    const reserva = {
+    reservaActual = {
       matricula: alumno.matricula,
       nombre: alumno.nombre,
       carrera: alumno.carrera,
@@ -61,10 +57,15 @@ $(document).ready(function () {
       estado: "pendiente"
     };
 
+    $("#modalConfirmacion").modal("show");
+  });
+
+  $("#confirmarReserva").on("click", function () {
     const reservasGuardadas = JSON.parse(localStorage.getItem("reservasConfirmadas")) || [];
-    reservasGuardadas.push(reserva);
+    reservasGuardadas.push(reservaActual);
     localStorage.setItem("reservasConfirmadas", JSON.stringify(reservasGuardadas));
 
+    $("#modalConfirmacion").modal("hide");
     window.location.href = "reporteFin.html";
   });
 
