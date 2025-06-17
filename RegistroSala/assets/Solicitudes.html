@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Reservar Salas de Cómputo</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="Css/reservaSala.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solicitudes de Reserva</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="Css/reservaSala.css" />
 </head>
 <body>
 
-  <div id="solicitudes-container"></div>
+  <div class="container" id="solicitudes-container"></div>
+
   <div id="mensaje-vacio">El buzón de solicitudes está vacío.</div>
 
-  <div class="footer">
-    <button class="btn btn-primary" onclick="window.location.href='bienvenido.html'">Volver</button>
+  <div class="footer text-right px-4">
+    <button class="btn btn-light" onclick="window.location.href='Bienvenido.html'">Volver</button>
   </div>
 
   <script src="Js/Solicitudes.js"></script>

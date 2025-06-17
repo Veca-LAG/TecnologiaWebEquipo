@@ -7,38 +7,51 @@
   <style>
     body {
       background-color: #2c9dbf;
+      font-family: Arial, sans-serif;
     }
     .contenedor {
       max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
+      margin: 60px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
       text-align: center;
     }
     .logo {
       width: 100px;
-      max-width: 80%;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
-    h2 {
-      font-size: 22px;
-      margin-bottom: 5px;
-    }
-    p {
-      font-size: 16px;
-      color: #666;
-      margin-top: 0;
-    }
-    h3 {
-      font-size: 18px;
-      margin-top: 20px;
+    h2, h3 {
+      color: #154c79;
     }
     #horaActual {
       position: absolute;
       top: 10px;
-      right: 10px;
-      font-size: 16px;
+      right: 20px;
       font-weight: bold;
+      color: white;
     }
+    input {
+      padding: 10px;
+      width: 80%;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #154c79;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #103c61;
+    }
+
     .modal {
       display: none;
       position: fixed;
@@ -50,20 +63,24 @@
       overflow: auto;
       background-color: rgba(0,0,0,0.4);
     }
+
     .modal-content {
-      background-color: #fefefe;
+      background-color: #fff;
       margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
+      padding: 25px;
+      border-radius: 10px;
       width: 80%;
+      max-width: 400px;
       text-align: center;
     }
+
     .close {
       color: #aaa;
       float: right;
       font-size: 28px;
       font-weight: bold;
     }
+
     .close:hover,
     .close:focus {
       color: black;
@@ -73,15 +90,15 @@
   </style>
 </head>
 <body>
+  <div id="horaActual"></div>
   <div class="contenedor">
     <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" alt="Logo Universidad del Mar">
     <h2>Reservar Salas de Cómputo</h2>
     <p>UNIVERSIDAD DEL MAR</p>
     <h3>Confirmar asistencia</h3>
     <input type="text" id="matricula" placeholder="Ingrese su matrícula">
-    <br><br>
+    <br>
     <button onclick="validarMatricula()">INICIAR SESIÓN</button>
-    <div id="horaActual"></div>
   </div>
 
   <!-- Modal -->
@@ -95,7 +112,6 @@
 
   <script src="Js/Alumnos.js"></script>
   <script>
-    // Mostrar hora actual
     function mostrarHoraActual() {
       const ahora = new Date();
       document.getElementById("horaActual").innerText = ahora.toLocaleTimeString('es-ES', {
@@ -105,7 +121,6 @@
     mostrarHoraActual();
     setInterval(mostrarHoraActual, 1000);
 
-    // Validar matrícula y actualizar estado
     function validarMatricula() {
       const input = document.getElementById("matricula").value.trim();
       const alumno = alumnos.find(a => a.matricula === input);
@@ -117,9 +132,10 @@
         let reservas = JSON.parse(localStorage.getItem('reservasConfirmadas')) || [];
         const reservasAlumno = reservas.filter(r =>
           r.matricula === input &&
-          (r.estado === "undefined" || r.estado === "Reservado" || r.estado === "En uso") &&
           (!r.horaRealSalida)
         );
+
+        let mensaje = "";
 
         if (reservasAlumno.length > 0) {
           const reserva = reservasAlumno[0];
@@ -127,26 +143,30 @@
           if (!reserva.horaRealEntrada) {
             reserva.horaRealEntrada = horaEntrada;
             reserva.estado = "En uso";
-            document.getElementById("mensajeBienvenida").innerHTML =
-              `Bienvenido ${alumno.nombre}<br>
-               Hora de entrada: ${horaEntrada}<br>
-               Sala: ${reserva.sala}`;
+            mensaje = `
+              <strong>Bienvenido ${alumno.nombre}</strong><br>
+              Hora de entrada: ${horaEntrada}<br>
+              Sala: ${reserva.sala}
+            `;
           } else {
             reserva.horaRealSalida = horaEntrada;
             reserva.estado = "Finalizado";
-            document.getElementById("mensajeBienvenida").innerHTML =
-              `Sesión finalizada ${alumno.nombre}<br>
-               Hora de salida: ${horaEntrada}<br>
-               ¡Gracias por su visita!`;
+            mensaje = `
+              <strong>Sesión finalizada ${alumno.nombre}</strong><br>
+              Hora de salida: ${horaEntrada}<br>
+              ¡Gracias por su visita!
+            `;
           }
 
           localStorage.setItem("reservasConfirmadas", JSON.stringify(reservas));
         } else {
-          document.getElementById("mensajeBienvenida").innerHTML =
-            `Bienvenido ${alumno.nombre}<br>
-             No tienes reservas activas.`;
+          mensaje = `
+            <strong>Bienvenido ${alumno.nombre}</strong><br>
+            No tienes reservas activas en este momento.
+          `;
         }
 
+        document.getElementById("mensajeBienvenida").innerHTML = mensaje;
         document.getElementById("myModal").style.display = "block";
         localStorage.setItem("alumno", JSON.stringify(alumno));
       } else {

@@ -1,24 +1,49 @@
 body {
-    background-color: #f8f9fa;
-  }
-  
-  .reserva-container {
-    max-width: 700px;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-  }
-  
-  .footer-bar {
-    background-color: #6a2016;
-    height: 60px;
-  }
-  
-  .logo {
-    width: 100px;
-  }
-  
-  .equipo-checkbox {
-    margin-right: 15px;
-  }
-  
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
+.reserva-container {
+  max-width: 700px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.footer-bar {
+  background-color: #003366;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.logo {
+  width: 100px;
+}
+
+.equipo-checkbox {
+  margin-right: 15px;
+}
+
+/* Modal personalizado */
+#modalConfirmacion .modal-content {
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#modalConfirmacion .modal-header {
+  background-color: #003366;
+  color: white;
+}
+
+#modalConfirmacion .btn-primary {
+  background-color: #003366;
+  border: none;
+}
+
+#modalConfirmacion .btn-primary:hover {
+  background-color: #001f4d;
+}
