@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<<<<<<< Updated upstream
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Formulario de Reserva</title>
@@ -8,22 +9,52 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body class="py-4">
+=======
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Reserva</title>
+  <link rel="stylesheet" href="Css/Formulario.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="py-4">
+  <!-- Alerta de éxito - colocada fuera del contenedor principal -->
+  <div class="alert alert-success alert-dismissible fade" id="alertaExito" role="alert" style="display: none; position: fixed; top: 15px; left: 50%; transform: translateX(-50%); z-index: 1050; width: 80%; max-width: 600px;">
+    <strong>¡Solicitud aceptada!</strong> La reserva ha sido registrada correctamente.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  
+>>>>>>> Stashed changes
   <div class="container reserva-container my-3 p-4">
     <div class="text-center mb-4">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" 
            alt="Logo Universidad del Mar" 
+<<<<<<< Updated upstream
            class="img-fluid logo" />
+=======
+           class="img-fluid logo">
+>>>>>>> Stashed changes
       <h1 class="mt-3">Reservar Salas de Cómputo</h1>
       <h2 class="h4">UNIVERSIDAD DEL MAR</h2>
       <h3 class="h5">Solicitud de reserva</h3>
     </div>
 
     <form id="formularioReserva">
+<<<<<<< Updated upstream
       <div class="mb-3">
         <label for="matricula" class="form-label">Matrícula:</label>
         <input type="text" class="form-control" id="matricula" required />
       </div>
 
+=======
+      <!-- Campo de matrícula -->
+      <div class="mb-3">
+        <label for="matricula" class="form-label">Matrícula:</label>
+        <input type="text" class="form-control" id="matricula" required>
+      </div>
+
+      <!-- Datos del alumno (autocompletados) -->
+>>>>>>> Stashed changes
       <div class="mb-3">
         <label class="form-label">Datos del alumno:</label>
         <div id="datos-alumno" class="alert alert-info p-2">
@@ -31,6 +62,10 @@
         </div>
       </div>
 
+<<<<<<< Updated upstream
+=======
+      <!-- Selección de sala -->
+>>>>>>> Stashed changes
       <div class="mb-3">
         <label for="sala" class="form-label">Seleccionar sala:</label>
         <select class="form-select" id="sala" required>
@@ -42,6 +77,7 @@
         </select>
       </div>
 
+<<<<<<< Updated upstream
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="hora-entrada" class="form-label">Hora de entrada:</label>
@@ -50,6 +86,17 @@
         <div class="col-md-6">
           <label for="hora-salida" class="form-label">Hora de salida:</label>
           <input type="time" class="form-control" id="hora-salida" required />
+=======
+      <!-- Horario -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="hora-entrada" class="form-label">Hora de entrada:</label>
+          <input type="time" class="form-control" id="hora-entrada" required>
+        </div>
+        <div class="col-md-6">
+          <label for="hora-salida" class="form-label">Hora de salida:</label>
+          <input type="time" class="form-control" id="hora-salida" required>
+>>>>>>> Stashed changes
         </div>
       </div>
 
@@ -57,10 +104,15 @@
         Si se selecciona un día que no corresponde a un sábado o a un domingo, únicamente se permitirán reservas para horarios posteriores a las 18:00 horas.
       </p>
 
+<<<<<<< Updated upstream
+=======
+      <!-- Equipos solicitados -->
+>>>>>>> Stashed changes
       <div class="mb-4">
         <label class="form-label d-block">Equipos solicitados:</label>
         <div class="d-flex justify-content-around flex-wrap">
           <div class="form-check equipo-checkbox">
+<<<<<<< Updated upstream
             <input class="form-check-input" type="checkbox" id="equipo-pc" value="PC de la sala" />
             <label class="form-check-label" for="equipo-pc">PC de la sala</label>
           </div>
@@ -70,17 +122,33 @@
           </div>
           <div class="form-check equipo-checkbox">
             <input class="form-check-input" type="checkbox" id="equipo-proyector" value="Proyector" />
+=======
+            <input class="form-check-input" type="checkbox" id="equipo-pc" value="PC de la sala">
+            <label class="form-check-label" for="equipo-pc">PC de la sala</label>
+          </div>
+          <div class="form-check equipo-checkbox">
+            <input class="form-check-input" type="checkbox" id="equipo-laptop" value="Laptop">
+            <label class="form-check-label" for="equipo-laptop">Laptop</label>
+          </div>
+          <div class="form-check equipo-checkbox">
+            <input class="form-check-input" type="checkbox" id="equipo-proyector" value="Proyector">
+>>>>>>> Stashed changes
             <label class="form-check-label" for="equipo-proyector">Proyector</label>
           </div>
         </div>
       </div>
 
       <div class="d-grid">
+<<<<<<< Updated upstream
         <button type="submit" class="btn btn-primary">Registrar</button>
+=======
+        <button type="submit" class="btn btn-primary">Continuar</button>
+>>>>>>> Stashed changes
       </div>
     </form>
   </div>
 
+<<<<<<< Updated upstream
   <div class="footer-bar d-flex justify-content-center align-items-center">
     <button id="volverBtn" class="btn btn-light btn-sm me-2">Volver</button>
   </div>
@@ -239,3 +307,180 @@ $("#formularioReserva").submit(function (e) {
   </script>
 </body>
 </html>
+=======
+  <!-- Modal de Confirmación -->
+  <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmacionModalLabel">Confirmar Reserva</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h6 class="mb-3">Por favor, verifique que los siguientes datos son correctos:</h6>
+          
+          <div class="card">
+            <div class="card-header bg-light">
+              Datos de la Reserva
+            </div>
+            <div class="card-body">
+              <p class="mb-1"><strong>Sala:</strong> <span id="confirm-sala"></span></p>
+              <p class="mb-1"><strong>Hora de entrada:</strong> <span id="confirm-entrada"></span></p>
+              <p class="mb-0"><strong>Hora de salida:</strong> <span id="confirm-salida"></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Editar</button>
+          <button type="button" class="btn btn-primary" id="btnConfirmar">Confirmar Reserva</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bar d-flex justify-content-center align-items-center">
+    <button id="volverBtn" class="btn btn-light btn-sm me-2">Volver</button>
+  </div>
+
+  <!-- jQuery y Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Script externo solo con la base de alumnos -->
+  <script src="Js/Alumnos.js"></script>
+  
+ <!-- Mantén todo el HTML igual hasta el script -->
+<script>
+    $(document).ready(function() {
+        // Función para buscar alumno por matrícula
+        function buscarAlumnoPorMatricula(matricula) {
+            return alumnos.find(alumno => alumno.matricula === matricula);
+        }
+
+        // Autocompletar datos al ingresar matrícula
+        $("#matricula").on('input', function() {
+            const matricula = $(this).val().trim();
+            const alumno = buscarAlumnoPorMatricula(matricula);
+            
+            if (alumno) {
+                $("#datos-alumno").html(`
+                    <p><strong>Nombre:</strong> ${alumno.nombre}</p>
+                    <p><strong>Carrera:</strong> ${alumno.carrera}</p>
+                    <p><strong>Semestre:</strong> ${alumno.semestre}</p>
+                `);
+            } else {
+                $("#datos-alumno").html(matricula ? 
+                    "Matrícula no encontrada" : 
+                    "Ingrese su matrícula para autocompletar");
+            }
+        });
+
+        // Formatear hora para mostrar en formato más amigable
+        function formatearHora(hora) {
+            if (!hora) return "";
+            const [horas, minutos] = hora.split(':');
+            return `${horas}:${minutos} hrs`;
+        }
+
+        // Procesar el formulario
+        $("#formularioReserva").submit(function(e) {
+            e.preventDefault();
+            
+            const matricula = $("#matricula").val().trim();
+            const alumno = buscarAlumnoPorMatricula(matricula);
+            
+            if (!alumno) {
+                alert("Por favor ingrese una matrícula válida");
+                return;
+            }
+
+            // Validar que se haya seleccionado una sala
+            const sala = $("#sala").val();
+            if (!sala) {
+                alert("Por favor seleccione una sala");
+                return;
+            }
+
+            // Validar que se hayan ingresado horarios
+            const horaEntrada = $("#hora-entrada").val();
+            const horaSalida = $("#hora-salida").val();
+            if (!horaEntrada || !horaSalida) {
+                alert("Por favor ingrese los horarios de entrada y salida");
+                return;
+            }
+
+            // Llenar el modal con los datos para confirmar
+            $("#confirm-sala").text("Sala " + sala);
+            $("#confirm-entrada").text(formatearHora(horaEntrada));
+            $("#confirm-salida").text(formatearHora(horaSalida));
+
+            // Mostrar el modal de confirmación
+            const confirmacionModal = new bootstrap.Modal(document.getElementById('confirmacionModal'));
+            confirmacionModal.show();
+        });
+
+        // Acción del botón confirmar
+        $("#btnConfirmar").click(function() {
+            const matricula = $("#matricula").val().trim();
+            const alumno = buscarAlumnoPorMatricula(matricula);
+            
+            // Obtener equipos seleccionados
+            const equipos = [];
+            $('input[type="checkbox"]:checked').each(function() {
+                equipos.push($(this).val());
+            });
+
+            // Obtener fecha actual
+            const fechaActual = new Date().toLocaleDateString('es-ES');
+            
+            // Crear objeto con los datos de la reserva
+            const reserva = {
+                matricula: matricula,
+                nombre: alumno.nombre,
+                carrera: alumno.carrera,
+                semestre: alumno.semestre,
+                sala: $("#sala").val(),
+                fecha: fechaActual,
+                entrada: $("#hora-entrada").val(),
+                salida: $("#hora-salida").val(),
+                equipos: equipos,
+                estado: "Reservado",
+                horaRealEntrada: "", // Se llenará cuando el alumno inicie sesión
+                horaRealSalida: "" // Se llenará cuando el alumno cierre sesión
+            };
+
+            // Obtener reservas existentes o crear array vacío
+            let reservas = JSON.parse(localStorage.getItem('reservasConfirmadas')) || [];
+            
+            // Agregar nueva reserva
+            reservas.push(reserva);
+            
+            // Guardar en localStorage
+            localStorage.setItem('reservasConfirmadas', JSON.stringify(reservas));
+            
+            // Cerrar el modal
+            $('#confirmacionModal').modal('hide');
+            
+            // Mostrar mensaje de éxito
+            const alerta = $('#alertaExito');
+            alerta.fadeIn();
+            
+            // Ocultar el mensaje después de 5 segundos
+            setTimeout(function() {
+                alerta.fadeOut();
+            }, 5000);
+            
+            // Limpiar el formulario
+            $("#formularioReserva")[0].reset();
+            $("#datos-alumno").html("Ingrese su matrícula para autocompletar");
+        });
+
+        // Botón para volver
+        $("#volverBtn").click(function() {
+            window.location.href = "Bienvenido.html";
+        });
+    });
+</script>
+</body>
+</html>
+>>>>>>> Stashed changes
