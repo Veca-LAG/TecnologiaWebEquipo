@@ -31,19 +31,6 @@
         </div>
       </div>
 
-      <!-- Checkbox para registro grupal -->
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="registroGrupal">
-        <label class="form-check-label" for="registroGrupal">¿Registro grupal?</label>
-      </div>
-
-      <!-- Sección de alumnos adicionales -->
-      <div id="alumnos-adicionales" class="mb-3" style="display: none;">
-        <label class="form-label">Alumnos adicionales:</label>
-        <div id="grupoContainer"></div>
-        <button type="button" class="btn btn-secondary btn-sm mt-2" id="agregarAlumno">+ Agregar alumno</button>
-      </div>
-
       <div class="mb-3">
         <label for="sala" class="form-label">Seleccionar sala:</label>
         <select class="form-select" id="sala" required>
@@ -105,38 +92,5 @@
   <!-- Script con base de alumnos y lógica de reserva -->
   <script src="Js/Alumnos.js"></script>
   <script src="Js/Reserva.js"></script>
-
-  <!-- Script para manejo de registro grupal -->
-  <script>
-    document.getElementById('registroGrupal').addEventListener('change', function () {
-      const contenedor = document.getElementById('alumnos-adicionales');
-      contenedor.style.display = this.checked ? 'block' : 'none';
-    });
-
-    document.getElementById('agregarAlumno').addEventListener('click', function () {
-      const container = document.getElementById('grupoContainer');
-
-      const row = document.createElement('div');
-      row.className = 'row mb-2';
-
-      row.innerHTML = `
-        <div class="col-md-5">
-          <input type="text" class="form-control" placeholder="Matrícula del alumno" required>
-        </div>
-        <div class="col-md-5">
-          <input type="text" class="form-control" placeholder="Nombre del alumno" required>
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-danger btn-sm eliminarAlumno">Eliminar</button>
-        </div>
-      `;
-
-      container.appendChild(row);
-
-      row.querySelector('.eliminarAlumno').addEventListener('click', function () {
-        row.remove();
-      });
-    });
-  </script>
 </body>
 </html>
