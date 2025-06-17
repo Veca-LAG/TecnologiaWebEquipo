@@ -87,15 +87,46 @@ function crearSolicitudHTML(s, index) {
     </div>
   `;
 }
-
 function registrarSolicitud(id) {
-  alert("Registro exitoso. Solicite al alumno la confirmación");
+  // Crear notificación
+  const noti = document.createElement("div");
+  noti.textContent = "✅ Registro exitoso. Solicite al alumno la confirmación";
+  noti.style.position = "fixed";
+  noti.style.top = "20px";
+  noti.style.left = "50%";
+  noti.style.transform = "translateX(-50%)";
+  noti.style.backgroundColor = "#4CAF50";
+  noti.style.color = "white";
+  noti.style.padding = "16px 24px";
+  noti.style.borderRadius = "8px";
+  noti.style.boxShadow = "0 4px 10px rgba(0, 0, 0, 0.2)";
+  noti.style.fontSize = "16px";
+  noti.style.zIndex = "1000";
+  noti.style.opacity = "0";
+  noti.style.transition = "opacity 0.3s ease";
+
+  document.body.appendChild(noti);
+
+  // Forzar reflow para animar la opacidad
+  void noti.offsetWidth;
+  noti.style.opacity = "1";
+
+  // Quitar notificación después de 3 segundos
+  setTimeout(() => {
+    noti.style.opacity = "0";
+    setTimeout(() => noti.remove(), 300);
+  }, 3000);
+
+  // Eliminar solicitud del DOM
   const elemento = document.getElementById(id);
   if (elemento) {
     elemento.remove();
   }
+
+  // Verificar si quedan solicitudes
   actualizarMensajeVacio();
 }
+
 
 function actualizarMensajeVacio() {
   const solicitudesVisibles = document.querySelectorAll(".container");
