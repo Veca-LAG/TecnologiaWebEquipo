@@ -1,45 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formulario de Reserva</title>
-  <link rel="stylesheet" href="css/Formulario.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="Css/Formulario.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="py-4">
   <div class="container reserva-container my-3 p-4">
     <div class="text-center mb-4">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuc9Aq8alOIs33kPxaNZTFH9VJ8gF3vIH7oA&s" 
            alt="Logo Universidad del Mar" 
-           class="img-fluid logo" />
+           class="img-fluid logo">
       <h1 class="mt-3">Reservar Salas de Cómputo</h1>
       <h2 class="h4">UNIVERSIDAD DEL MAR</h2>
       <h3 class="h5">Solicitud de reserva</h3>
     </div>
 
     <form id="formularioReserva">
-      <div class="mb-3">
-        <label for="matricula" class="form-label">Matrícula:</label>
-        <input type="text" class="form-control" id="matricula" required />
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="registroGrupal">
+        <label class="form-check-label" for="registroGrupal">Registro grupal</label>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Datos del alumno:</label>
-        <div id="datos-alumno" class="alert alert-info p-2">
-          Ingrese su matrícula para autocompletar
+      <!-- Individual -->
+      <div id="seccionIndividual">
+        <div class="mb-3">
+          <label for="matricula" class="form-label">Matrícula:</label>
+          <input type="text" class="form-control" id="matricula">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Datos del alumno:</label>
+          <div id="datos-alumno" class="alert alert-info p-2">
+            Ingrese su matrícula para autocompletar
+          </div>
         </div>
       </div>
 
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="registroGrupal">
-        <label class="form-check-label" for="registroGrupal">¿Registro grupal?</label>
-      </div>
+      <!-- Grupal -->
+      <div id="seccionGrupal" style="display: none;">
+        <div class="mb-3">
+          <label for="encargado" class="form-label">Nombre del encargado:</label>
+          <input type="text" class="form-control" id="encargado">
+        </div>
 
-      <div id="alumnos-adicionales" class="mb-3" style="display: none;">
-        <label class="form-label">Alumnos adicionales:</label>
-        <div id="grupoContainer"></div>
-        <button type="button" class="btn btn-secondary btn-sm mt-2" id="agregarAlumno">+ Agregar alumno</button>
+        <div class="mb-3">
+          <label for="matriculaGrupal" class="form-label">Matrícula del alumno:</label>
+          <input type="text" class="form-control" id="matriculaGrupal">
+          <button type="button" class="btn btn-secondary mt-2" id="agregarAlumno">Agregar alumno</button>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Alumnos agregados:</label>
+          <ul id="listaAlumnos" class="list-group"></ul>
+        </div>
       </div>
 
       <div class="mb-3">
@@ -56,11 +72,11 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="hora-entrada" class="form-label">Hora de entrada:</label>
-          <input type="time" class="form-control" id="hora-entrada" required />
+          <input type="time" class="form-control" id="hora-entrada" required>
         </div>
         <div class="col-md-6">
           <label for="hora-salida" class="form-label">Hora de salida:</label>
-          <input type="time" class="form-control" id="hora-salida" required />
+          <input type="time" class="form-control" id="hora-salida" required>
         </div>
       </div>
 
@@ -72,15 +88,15 @@
         <label class="form-label d-block">Equipos solicitados:</label>
         <div class="d-flex justify-content-around flex-wrap">
           <div class="form-check equipo-checkbox">
-            <input class="form-check-input" type="checkbox" id="equipo-pc" value="PC de la sala" />
+            <input class="form-check-input" type="checkbox" id="equipo-pc" value="PC de la sala">
             <label class="form-check-label" for="equipo-pc">PC de la sala</label>
           </div>
           <div class="form-check equipo-checkbox">
-            <input class="form-check-input" type="checkbox" id="equipo-laptop" value="Laptop" />
+            <input class="form-check-input" type="checkbox" id="equipo-laptop" value="Laptop">
             <label class="form-check-label" for="equipo-laptop">Laptop</label>
           </div>
           <div class="form-check equipo-checkbox">
-            <input class="form-check-input" type="checkbox" id="equipo-proyector" value="Proyector" />
+            <input class="form-check-input" type="checkbox" id="equipo-proyector" value="Proyector">
             <label class="form-check-label" for="equipo-proyector">Proyector</label>
           </div>
         </div>
@@ -92,58 +108,128 @@
     </form>
   </div>
 
-  <div class="footer-bar d-flex justify-content-center align-items-center mt-3">
-    <button id="volverBtn" class="btn btn-light btn-sm me-2" onclick="history.back()">Volver</button>
+  <div class="footer-bar d-flex justify-content-center align-items-center">
+    <button id="volverBtn" class="btn btn-light btn-sm me-2">Volver</button>
   </div>
 
-  <!-- jQuery y Bootstrap JS -->
+  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="Js/Alumnos.js"></script>
 
-  <!-- Scripts personalizados -->
-  <script src="js/Alumnos.js"></script>
-  <script src="js/Reserva.js"></script>
-
-  <!-- Script interno para lógica de formulario -->
   <script>
-    document.getElementById('registroGrupal').addEventListener('change', function () {
-      const contenedor = document.getElementById('alumnos-adicionales');
-      contenedor.style.display = this.checked ? 'block' : 'none';
-    });
+    $(document).ready(function () {
+      const alumnosAgregados = [];
 
-    document.getElementById('agregarAlumno').addEventListener('click', function () {
-      const container = document.getElementById('grupoContainer');
-
-      const row = document.createElement('div');
-      row.className = 'row mb-2';
-
-      row.innerHTML = `
-        <div class="col-md-5">
-          <input type="text" class="form-control" placeholder="Matrícula del alumno" required>
-        </div>
-        <div class="col-md-5">
-          <input type="text" class="form-control" placeholder="Nombre del alumno" required>
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-danger btn-sm eliminarAlumno">Eliminar</button>
-        </div>
-      `;
-
-      container.appendChild(row);
-
-      row.querySelector('.eliminarAlumno').addEventListener('click', function () {
-        row.remove();
-      });
-    });
-
-    document.getElementById('formularioReserva').addEventListener('submit', function (e) {
-      const entrada = document.getElementById('hora-entrada').value;
-      const salida = document.getElementById('hora-salida').value;
-
-      if (entrada && salida && entrada >= salida) {
-        e.preventDefault();
-        alert('La hora de salida debe ser posterior a la de entrada.');
+      function buscarAlumnoPorMatricula(matricula) {
+        return alumnos.find(alumno => alumno.matricula === matricula);
       }
+
+      $("#registroGrupal").change(function () {
+        const grupal = $(this).is(":checked");
+        $("#seccionIndividual").toggle(!grupal);
+        $("#seccionGrupal").toggle(grupal);
+      });
+
+      $("#matricula").on('input', function () {
+        const matricula = $(this).val().trim();
+        const alumno = buscarAlumnoPorMatricula(matricula);
+
+        if (alumno) {
+          $("#datos-alumno").html(`
+            <p><strong>Nombre:</strong> ${alumno.nombre}</p>
+            <p><strong>Carrera:</strong> ${alumno.carrera}</p>
+            <p><strong>Semestre:</strong> ${alumno.semestre}</p>
+          `);
+        } else {
+          $("#datos-alumno").html(matricula ? 
+            "Matrícula no encontrada" : 
+            "Ingrese su matrícula para autocompletar");
+        }
+      });
+
+      $("#agregarAlumno").click(function () {
+        const matricula = $("#matriculaGrupal").val().trim();
+        const alumno = buscarAlumnoPorMatricula(matricula);
+
+        if (alumno && !alumnosAgregados.find(a => a.matricula === matricula)) {
+          alumnosAgregados.push(alumno);
+          $("#listaAlumnos").append(`<li class="list-group-item">${alumno.nombre} (${alumno.matricula})</li>`);
+          $("#matriculaGrupal").val('');
+        } else {
+          alert("Matrícula no válida o ya agregada");
+        }
+      });
+
+      $("#formularioReserva").submit(function (e) {
+        e.preventDefault();
+
+        const esGrupal = $("#registroGrupal").is(":checked");
+        let reservas = [];
+
+        if (esGrupal) {
+          const encargado = $("#encargado").val().trim();
+          if (!encargado) {
+            alert("Debe ingresar el nombre del encargado.");
+            return;
+          }
+          if (alumnosAgregados.length === 0) {
+            alert("Debe agregar al menos un alumno.");
+            return;
+          }
+
+          reservas = alumnosAgregados.map(alumno => ({
+            matricula: alumno.matricula,
+            nombre: alumno.nombre,
+            carrera: alumno.carrera,
+            semestre: alumno.semestre,
+            encargado: encargado,
+            sala: $("#sala").val(),
+            fecha: new Date().toLocaleDateString('es-MX'),
+            entrada: $("#hora-entrada").val(),
+            salida: $("#hora-salida").val(),
+            equipos: $('input[type="checkbox"]:checked').map(function () {
+              return $(this).val();
+            }).get(),
+            estado: "undefined"
+          }));
+        } else {
+          const matricula = $("#matricula").val().trim();
+          const alumno = buscarAlumnoPorMatricula(matricula);
+
+          if (!alumno) {
+            alert("Por favor ingrese una matrícula válida");
+            return;
+          }
+
+          reservas.push({
+            matricula: alumno.matricula,
+            nombre: alumno.nombre,
+            carrera: alumno.carrera,
+            semestre: alumno.semestre,
+            sala: $("#sala").val(),
+            fecha: new Date().toLocaleDateString('es-MX'),
+            entrada: $("#hora-entrada").val(),
+            salida: $("#hora-salida").val(),
+            equipos: $('input[type="checkbox"]:checked').map(function () {
+              return $(this).val();
+            }).get(),
+            estado: "undefined"
+          });
+        }
+
+        const confirmacion = confirm("¿Está seguro de hacer el registro?");
+        if (confirmacion) {
+          const reservasGuardadas = JSON.parse(localStorage.getItem('reservasConfirmadas')) || [];
+          reservasGuardadas.push(...reservas);
+          localStorage.setItem('reservasConfirmadas', JSON.stringify(reservasGuardadas));
+          window.location.href = "reporteFin.html";
+        }
+      });
+
+      $("#volverBtn").click(function () {
+        window.location.href = "Bienvenido.html";
+      });
     });
   </script>
 </body>
