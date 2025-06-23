@@ -36,4 +36,5 @@ Este proyecto es una aplicación web que permite registrar, gestionar y visualiz
 * [Velasco Naranjo Mane Isabela](https://github.com/Veca-LAG)
 
 ## Licencia
-<a href="https://github.com/Veca-LAG/TecnologiaWebEquipo/tree/main">Sistema de sesiones de salas de cómputo</a> 2025 por <a href="https://github.com/Veca-LAG/TecnologiaWebEquipo/tree/main">Camacho García Gabriel Sebastián, Jiménez Venegas Alejandra, Ramos Barrera Ernesto Manuel, Sánchez Jiménez Lizeth Elisa y Velasco Naranjo Mane Isabela</a> está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Atribution-NonCommercial-ShareAlike 4.0 International</a>
+<a href="https://github.com/Veca-LAG/TecnologiaWebEquipo/tree/main">Sistema de sesiones de salas de cómputo</a> 2025 por <a href="https://github.com/Veca-LAG/TecnologiaWebEquipo/tree/main">Camacho García Gabriel Sebastián, Jiménez Venegas Alejandra, Ramos Barrera Ernesto Manuel, Sánchez Jiménez Lizeth Elisa y Velasco Naranjo Mane Isabela</a> está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
+
