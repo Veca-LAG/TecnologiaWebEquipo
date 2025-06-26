@@ -11,7 +11,7 @@ $(document).ready(function () {
         });
 
         if (reservas.length === 0) {
-            $tbody.append('<tr><td colspan="15" style="text-align: center;">No hay reservas confirmadas</td></tr>');
+            $tbody.append('<tr><td colspan="13" style="text-align: center;">No hay reservas confirmadas</td></tr>');
             return;
         }
 
@@ -30,8 +30,6 @@ $(document).ready(function () {
             $tr.append(`<td>${reserva.observaciones || 'Sin observaciones'}</td>`);
             $tr.append(`<td>${reserva.horaRealEntrada || 'No registrada'}</td>`);
             $tr.append(`<td>${reserva.horaRealSalida || 'No registrada'}</td>`);
-            $tr.append(`<td>${reserva.entradaReal || 'No registrada'}</td>`);
-            $tr.append(`<td>${reserva.salidaReal || 'No registrada'}</td>`);
 
             let estadoClass = '';
             switch (reserva.estado) {
