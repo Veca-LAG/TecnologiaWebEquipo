@@ -10,7 +10,7 @@ index.html
     │   📃 pantalla de inicio del encargado
     │
     ├──formulario.html
-    │   📃
+    │   📃formulario de datos para la reserva de una sala
     │
     ├──reporteFin.html
     │   📃Reporte de reservas confirmadas, con la hora real y propuesta de entrada y salida
