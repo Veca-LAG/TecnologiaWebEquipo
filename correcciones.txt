@@ -2,36 +2,76 @@
 reporteAlumno.html se usa?
 confirmacion.html se usa?
 
+RegistroSala\assets
+│
+├──Css
+│   │
+│   ├──asistencia.css
+│   │
+│   ├──Bienvenido.css
+│   │
+│   ├─Confirmacion.css
+│   │
+│   ├─Formulario.css
+│   │
+│   ├─inicio.css
+│   │
+│   ├─login.css
+│   │
+│   ├─Reporte_alumno.css
+│   │
+│   ├─reporteFin.css
+│   │
+│   └─reservaSala.css
+│
+├──Js
+│   ├──Alumnos.js
+│   │
+│   ├──asistencia.css
+│   │
+│   ├──BienvenidoEncargado.css
+│   │
+│   ├─Encargados.css
+│   │
+│   ├─LoginEncargados.css
+│   │
+│   ├─reporte.css
+│   │
+│   ├─Reserva.css
+│   │
+│   ├─Solicitudes.css
+│
+├──index.html
+│    │    📃inicio de sesion de parte del encargado
+│   │
+│   └── Bienvenido.html
+│       │   📃 pantalla de inicio del encargado
+│       │
+│       ├──formulario.html
+│       │   📃formulario de datos para la reserva de una sala
+│       │
+│       ├──reporteFin.html
+│       │   📃Reporte de reservas confirmadas, con la hora real y propuesta de entrada y salida
+│       │
+│       └──Solicitudes.html
+│               📃solicitudes ya ingresadas que acepta el encargado
+│ 
+└──indexAlumno.html
+    │    📃inicio de sesion de parte del Alumno
+    │
+    ├── Mensaje aceptado entrada
+    │       📃Si existe reservacion y da la hora de entrada
+    │
+    ├── Mensaje aceptado salida
+    │       📃Si existe reservacion y da la hora de salida
+    │
+    ├── Mensaje denegado entrada
+    │       📃Si existe reservacion y da la hora de entrada
+    │
+    └── Mensaje denegado salida
+            📃Si existe reservacion y da la hora de salida
 
-index.html
-│    📃inicio de sesion de parte del encargado
-│
-└── Bienvenido.html
-    │   📃 pantalla de inicio del encargado
-    │
-    ├──formulario.html
-    │   📃formulario de datos para la reserva de una sala
-    │
-    ├──reporteFin.html
-    │   📃Reporte de reservas confirmadas, con la hora real y propuesta de entrada y salida
-    │
-    └──Solicitudes.html
-            📃solicitudes ya ingresadas que acepta el encargado
 
-indexAlumno.html
-│    📃inicio de sesion de parte del Alumno
-│
-├── Mensaje aceptado entrada
-│       📃Si existe reservacion y da la hora de entrada
-│
-├── Mensaje aceptado salida
-│       📃Si existe reservacion y da la hora de salida
-│
-├── Mensaje denegado entrada
-│       📃Si existe reservacion y da la hora de entrada
-│
-└── Mensaje denegado salida
-        📃Si existe reservacion y da la hora de salida
 
 
     -------------------------------
