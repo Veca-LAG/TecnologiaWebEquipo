@@ -3,7 +3,11 @@
 **Sistema de sesiones de salas de cómputo**
 
 Proyecto desarrollado como parte del curso de Tecnología Web por:  
-Camacho García Gabriel Sebastián, Jiménez Venegas Alejandra, Ramos Barrera Ernesto Manuel, Sánchez Jiménez Lizeth Elisa y Velasco Naranjo Mane Isabela.
+* Camacho García Gabriel Sebastián 
+* Jiménez Venegas Alejandra
+* Ramos Barrera Ernesto Manuel
+* Sánchez Jiménez Lizeth Elisa
+* Velasco Naranjo Mane Isabela.
 
 ---
 
