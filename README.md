@@ -1,4 +1,4 @@
-# 🖥️ Sistema de Reservas de Salas – Proyecto Tecnologías Web
+# 🖥️ UniReservas – Proyecto Tecnologías Web
 
 **Sistema de sesiones de salas de cómputo**
 
@@ -149,5 +149,5 @@ Este proyecto fue realizado con fines educativos. Si se estimara su desarrollo d
 
 📝 Licencia
 
-<a href="https://github.com/Veca-LAG/TecnologiaWebEquipo/tree/main">Sistema de sesiones de salas de cómputo</a> 2025 por <a href="https://github.com/Veca-LAG/TecnologiaWebEquipo/tree/main">Camacho García Gabriel Sebastián, Jiménez Venegas Alejandra, Ramos Barrera Ernesto Manuel, Sánchez Jiménez Lizeth Elisa y Velasco Naranjo Mane Isabela</a> está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
+<a href="https://github.com/Veca-LAG/TecnologiaWebEquipo/tree/main">UniReservas</a> 2025 por <a href="https://github.com/Veca-LAG/TecnologiaWebEquipo/tree/main">Camacho García Gabriel Sebastián, Jiménez Venegas Alejandra, Ramos Barrera Ernesto Manuel, Sánchez Jiménez Lizeth Elisa y Velasco Naranjo Mane Isabela</a> está licenciada bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
 
