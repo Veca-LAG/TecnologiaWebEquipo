@@ -63,6 +63,21 @@ h1 {
   padding: 10px;
 }
 
+#volverBtn {
+    background-color: #1a3d6d;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#volverBtn:hover {
+    background-color: #15406c;
+}
+
 #mensaje-vacio {
   text-align: center;
   font-size: 1.2em;
