@@ -1,38 +1,37 @@
-Cuando se genera el roprte en el encargado marca que no existe reporte.html
+
 reporteAlumno.html se usa?
 confirmacion.html se usa?
-solicitudes.js se usa?
-
-poner el mensaje para verificar si de verdad quierre guardar el formulario? listo
-
-crear otro archivo de js para ingresar los datos del formulario generado por el encargado
-y estos se relacionen con la matricula para sacar la hora de entrada y salida? listo
-
-
 
 
 index.html
-inicio de sesion de parte del encargado
--->
-    Bienvenido.html
-        menu 
-            crear registro
-                formulario.html
-
-                reporte
-                    reporteFin.html
-
-                veridficar asistencia
-                    asistencia
-
-                Salir
-                    index.html
+│    📃inicio de sesion de parte del encargado
+│
+└── Bienvenido.html
+    │   📃 pantalla de inicio del encargado
+    │
+    ├──formulario.html
+    │   📃
+    │
+    ├──reporteFin.html
+    │   📃Reporte de reservas confirmadas, con la hora real y propuesta de entrada y salida
+    │
+    └──Solicitudes.html
+            📃solicitudes ya ingresadas que acepta el encargado
 
 indexAlumno.html
-inicio de sesión de parte del indexAlumno
--->
-    reporte.html
-
+│    📃inicio de sesion de parte del Alumno
+│
+├── Mensaje aceptado entrada
+│       📃Si existe reservacion y da la hora de entrada
+│
+├── Mensaje aceptado salida
+│       📃Si existe reservacion y da la hora de salida
+│
+├── Mensaje denegado entrada
+│       📃Si existe reservacion y da la hora de entrada
+│
+└── Mensaje denegado salida
+        📃Si existe reservacion y da la hora de salida
 
 
     -------------------------------
@@ -42,6 +41,17 @@ inicio de sesión de parte del indexAlumno
     Numero libre (Numero de asiento)
     Buen enlace de informacion 
     Tipo de letra o tipografia para los titulos 
-
+---------------------
+-Poner las licencias
+-Nombre del sistema
+-Diagrama y notaciones
+-Carpeta de dispositivos
+-Corregir letra
+-Al explicar primero explicar y después mostrar y un demo
+-Ajuste visuales antes de la presentación.
+-Titulo de sistema
+-Botones y mejor interfaz del usuario
+-Git hub importante explicación del desarrollo y buena presentación
+-Incluir el costo del proyecto como extrav
 
 
